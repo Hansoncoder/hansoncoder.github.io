@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hanson" />
+
+
+
+<meta name="description" content="Metal 框架支持 GPU 加速高、 3D 图像渲染以及数据并行计算工作。Metal 提供了先进合理的 API，它不仅为图形的组织、处理和呈现，也为计算命令以及为这些命令相关的数据和资源的管理，提供了细粒度和底层的控制。Metal 的主要目的是最小化 GPU 工作时 CPU 的消耗。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metal入门一">
+<meta property="og:url" content="http://hansoncoder.com/2016/06/02/The-first-article-Metal/index.html">
+<meta property="og:site_name" content="Hanson's Blog">
+<meta property="og:description" content="Metal 框架支持 GPU 加速高、 3D 图像渲染以及数据并行计算工作。Metal 提供了先进合理的 API，它不仅为图形的组织、处理和呈现，也为计算命令以及为这些命令相关的数据和资源的管理，提供了细粒度和底层的控制。Metal 的主要目的是最小化 GPU 工作时 CPU 的消耗。">
+<meta property="og:image" content="http://hansoncoder.com/resources/Metal/1.png">
+<meta property="og:updated_time" content="2016-06-02T10:16:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Metal入门一">
+<meta name="twitter:description" content="Metal 框架支持 GPU 加速高、 3D 图像渲染以及数据并行计算工作。Metal 提供了先进合理的 API，它不仅为图形的组织、处理和呈现，也为计算命令以及为这些命令相关的数据和资源的管理，提供了细粒度和底层的控制。Metal 的主要目的是最小化 GPU 工作时 CPU 的消耗。">
+<meta name="twitter:image" content="http://hansoncoder.com/resources/Metal/1.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="Hanson&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Metal入门一 | Hanson&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/myAvatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hanson</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC-MRC/">ARC&MRC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hooks/">Hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metal入门/">Metal入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL库/">STL库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组/">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动开发，喜欢玩技术。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hanson</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/myAvatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hanson</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-The-first-article-Metal" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/02/The-first-article-Metal/" class="article-date">
+      <time datetime="2016-06-01T20:20:30.000Z" itemprop="datePublished">2016-06-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Metal入门一
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Metal/">Metal</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Metal入门/">Metal入门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　Metal 框架支持 GPU 加速高、 3D 图像渲染以及数据并行计算工作。Metal 提供了先进合理的 API，它不仅为图形的组织、处理和呈现，也为计算命令以及为这些命令相关的数据和资源的管理，提供了细粒度和底层的控制。Metal 的主要目的是最小化 GPU 工作时 CPU 的消耗。</p>
+<a id="more"></a>
+<p>　　若你是游戏开发者，Metal 不是最佳选择。苹果官方的 Scene Kit (3D) 和 Sprite Kit (2D) ， Epic提供的 Unreal Engine 或 Unity，是你更好的选择。使用这些引擎，你无需直接使用 Metal 的 API，就可以从 Metal 中获益。<br><img src="/resources/Metal/1.png" alt="框架结构图"></p>
+<h2 id="Metal概要"><a href="#Metal概要" class="headerlink" title="Metal概要"></a>Metal概要</h2><p>设计目的：3D图形渲染和并行运算<br>学习目的：开发自己游戏引擎或高性能并行运算库，了解游戏引擎底层原理。<br>优点：高性能绘图（减少资源开销）、避免多余的校验和编辑<br>缺点：目前仅限于搭建A7及更新芯片的iPhone、iPad（A7芯片以上的iOS平台）<br>特点：metal方法是基于协议设计，面向接口开发</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ul>
+<li>暂态的对象（创建和销毁是廉价的，它们的创建方法都返回 autoreleased对象）</li>
+</ul>
+<blockquote>
+<p>1.Command Buffers<br>2.Command Encoders</p>
+</blockquote>
+<ul>
+<li>非暂态的对象（在性能相关的代码里应该尽量重用它,避免反复创建）</li>
+</ul>
+<blockquote>
+<p>1.Command Queues<br>2.Buffers<br>3.Textures<br>4.Sampler States Libraries<br>5.Compute States<br>6.Render Pipeline States<br>7.Depth/Stencil States</p>
+</blockquote>
+<h2 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h2><ul>
+<li>七步设置Metal</li>
+</ul>
+<blockquote>
+<p>1.创建MTLDevice<br>2.创建一个CAMetalLayer<br>3.创建一个Vertex Buffer<br>4.创建一个Vertex Shader<br>5.创建一个Fragment Shader<br>6.创建一个Render Pipeline<br>7.创建一个Command Queue</p>
+</blockquote>
+<ul>
+<li>五步完成渲染</li>
+</ul>
+<blockquote>
+<p>1.创建一个Display link<br>2.创建一个Render Pass Descriptor<br>3.创建一个Command Buffer<br>4.创建一个Render Command Encoder<br>5.提交你Command Buffer的内容</p>
+</blockquote>
+<ul>
+<li>编写着色器两个函数<blockquote>
+<p>1.编写顶点函数（顶点数据中每个顶点被执行一次）<br>2.编写片段函数（每个像素被执行一次）</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="开发实践"><a href="#开发实践" class="headerlink" title="开发实践"></a>开发实践</h2><p>　　使用Metal编写一个旋转正方形。本文Demo你可以从Github上获得。</p>
+<ul>
+<li>七步初始化metal</li>
+</ul>
+<blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: - 七步初始化Metal</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">setupMetal</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 1.0 创建一个MTLDevice</span></span><br><span class="line">    device = <span class="type">MTLCreateSystemDefaultDevice</span>()</span><br><span class="line">    <span class="comment">// 1.1 创建一个CAMetalLayer</span></span><br><span class="line">    metalLayer = <span class="type">CAMetalLayer</span>()</span><br><span class="line">    metalLayer.device = device</span><br><span class="line">    metalLayer.pixelFormat = .<span class="type">BGRA8Unorm</span></span><br><span class="line">    metalLayer.framebufferOnly = <span class="literal">true</span></span><br><span class="line">    metalLayer.frame = view.layer.frame</span><br><span class="line">    view.layer.addSublayer(metalLayer)</span><br><span class="line">    <span class="comment">// 1.2 创建一个Vertex Buffer</span></span><br><span class="line">    <span class="keyword">let</span> dataSize = vertexData.<span class="built_in">count</span> * <span class="built_in">sizeofValue</span>(vertexData[<span class="number">0</span>])</span><br><span class="line">    vertexBuffer = device.newBufferWithBytes(vertexData, length: dataSize, options: <span class="type">MTLResourceOptions</span>.<span class="type">OptionCPUCacheModeDefault</span>)</span><br><span class="line">    <span class="comment">// 旋转缓冲区内容时刻变化，这里通过长度创建</span></span><br><span class="line">    uniformBuffer = device.newBufferWithLength(<span class="built_in">sizeof</span>(<span class="type">Uniforms</span>), options: <span class="type">MTLResourceOptions</span>.<span class="type">OptionCPUCacheModeDefault</span>)</span><br><span class="line">    <span class="keyword">let</span> defaultLibrary = device.newDefaultLibrary()</span><br><span class="line">    <span class="comment">// 1.3 创建一个Vertex Shader</span></span><br><span class="line">    <span class="keyword">let</span> vertexProgram = defaultLibrary?.newFunctionWithName(<span class="string">"basic_vertex"</span>)</span><br><span class="line">    <span class="comment">// 1.4 创建一个Fragment Shader</span></span><br><span class="line">    <span class="keyword">let</span> fragmentProgram = defaultLibrary?.newFunctionWithName(<span class="string">"basic_fragment"</span>)</span><br><span class="line">    <span class="comment">// 1.5 创建一个Render Pipeline</span></span><br><span class="line">    <span class="keyword">let</span> pipelineStateDescriptor = <span class="type">MTLRenderPipelineDescriptor</span>()</span><br><span class="line">    pipelineStateDescriptor.vertexFunction = vertexProgram</span><br><span class="line">    pipelineStateDescriptor.fragmentFunction = fragmentProgram</span><br><span class="line">    pipelineStateDescriptor.colorAttachments[<span class="number">0</span>].pixelFormat = .<span class="type">BGRA8Unorm</span></span><br><span class="line">    pipelineState = <span class="keyword">try</span>! device.newRenderPipelineStateWithDescriptor(pipelineStateDescriptor)</span><br><span class="line">    <span class="comment">// 1.6 创建一个Command Queue</span></span><br><span class="line">    commandQueue = device.newCommandQueue()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>五步完成渲染</li>
+</ul>
+<blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// MARK: - 五步完成渲染</span></span><br><span class="line">   <span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">displayContent</span><span class="params">()</span></span> &#123;</span><br><span class="line">       <span class="comment">// 2.0 创建一个Display link</span></span><br><span class="line">       timer = <span class="type">CADisplayLink</span>(target: <span class="keyword">self</span>, selector: #selector(<span class="type">ViewController</span>.gameloop))</span><br><span class="line">       timer.addToRunLoop(<span class="type">NSRunLoop</span>.mainRunLoop(), forMode: <span class="type">NSDefaultRunLoopMode</span>)</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">render</span><span class="params">()</span></span> &#123;</span><br><span class="line">       <span class="keyword">let</span> drawable = metalLayer.nextDrawable()</span><br><span class="line">       <span class="comment">// 2.1 创建一个Render Pass Descriptor</span></span><br><span class="line">       <span class="keyword">let</span> renderPassDescriptor = <span class="type">MTLRenderPassDescriptor</span>()</span><br><span class="line">       renderPassDescriptor.colorAttachments[<span class="number">0</span>].texture = drawable?.texture</span><br><span class="line">       renderPassDescriptor.colorAttachments[<span class="number">0</span>].loadAction = .<span class="type">Clear</span></span><br><span class="line">       renderPassDescriptor.colorAttachments[<span class="number">0</span>].clearColor = <span class="type">MTLClearColor</span>(red: <span class="number">0.0</span>, green: <span class="number">104.0</span>/<span class="number">255.0</span>, blue: <span class="number">5.0</span>/<span class="number">255.0</span>, alpha: <span class="number">1.0</span>)</span><br><span class="line">       renderPassDescriptor.colorAttachments[<span class="number">0</span>].storeAction = .<span class="type">Store</span></span><br><span class="line">       <span class="comment">// 2.2 创建一个Command Buffer</span></span><br><span class="line">       <span class="keyword">let</span> commandBuffer = commandQueue.commandBuffer()</span><br><span class="line">       <span class="comment">// 2.3 创建一个Render Command Encoder</span></span><br><span class="line">       <span class="keyword">let</span> renderEncoder = commandBuffer.renderCommandEncoderWithDescriptor(renderPassDescriptor)</span><br><span class="line">       renderEncoder.setRenderPipelineState(pipelineState)</span><br><span class="line">       <span class="comment">// 将vertexBuffer添加到第0个缓冲区（等下metal着色器要取出值）</span></span><br><span class="line">       renderEncoder.setVertexBuffer(vertexBuffer, offset: <span class="number">0</span>, atIndex: <span class="number">0</span>)</span><br><span class="line">       <span class="comment">// 将uniformBuffer添加到第1个缓冲区（等下metal着色器要取出值）</span></span><br><span class="line">       renderEncoder.setVertexBuffer(uniformBuffer, offset: <span class="number">0</span>, atIndex: <span class="number">1</span>)</span><br><span class="line">       renderEncoder.drawPrimitives(.<span class="type">Triangle</span>, vertexStart: <span class="number">0</span>, vertexCount: <span class="number">6</span>)</span><br><span class="line">       renderEncoder.endEncoding()</span><br><span class="line">       <span class="comment">// 2.4 提交你Command Buffer的内容</span></span><br><span class="line">       commandBuffer.presentDrawable(drawable!)</span><br><span class="line">       commandBuffer.commit()</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>编写顶点函数及片段函数</li>
+</ul>
+<blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">typedef <span class="class"><span class="keyword">struct</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    float4x4 rotation_matrix;</span><br><span class="line">&#125; <span class="type">Uniforms</span>;</span><br><span class="line">typedef <span class="class"><span class="keyword">struct</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    float4 position;</span><br><span class="line">    float4 color;</span><br><span class="line">&#125; <span class="type">VertexIn</span>;</span><br><span class="line">typedef <span class="class"><span class="keyword">struct</span> </span>&#123;</span><br><span class="line">    float4 position [[position]];</span><br><span class="line">    half4  color;</span><br><span class="line">&#125; <span class="type">VertexOut</span>;</span><br><span class="line"><span class="comment">///顶点函数：传入一个vertices顶点数据，&amp;uniforms旋转矩阵的引用，vid顶点索引</span></span><br><span class="line">vertex <span class="type">VertexOut</span> basic_vertex(device <span class="type">VertexIn</span> *vertices [[buffer(<span class="number">0</span>)]],</span><br><span class="line">                              constant <span class="type">Uniforms</span> &amp;uniforms [[buffer(<span class="number">1</span>)]],</span><br><span class="line">                                 uint vid [[vertex_id]])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">VertexOut</span> out;</span><br><span class="line">    out.position = uniforms.rotation_matrix * vertices[vid].position;</span><br><span class="line">    out.color = half4(vertices[vid].color);</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// 片段函数</span></span><br><span class="line">fragment half4 basic_fragment(<span class="type">VertexOut</span> <span class="keyword">in</span> [[stage_in]])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">in</span>.color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://objccn.io/issue-18-2/" target="_blank" rel="external">objc中国书籍-Metal</a><br><a href="http://www.cocoachina.com/ios/20141119/10248.html" target="_blank" rel="external">使用Metal打造令人惊叹的游戏效果</a><br><a href="http://www.cocoachina.com/swift/20140902/9506.html" target="_blank" rel="external">iOS 8 Metal Swift教程 ：开始学习</a><br><a href="http://www.cocoachina.com/swift/20141107/10155.html" target="_blank" rel="external">iOS 8 Metal Swift 教程（二）:3D图形</a><br><a href="http://www.cocoachina.com/game/20141013/9890.html" target="_blank" rel="external">Metal Framework基础使用教程</a><br><a href="http://www.cocoachina.com/ios/20141020/9979.html" target="_blank" rel="external">Metal基本图像处理实例</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Hanson</a></p>
+        <p><span>发布时间:</span>2016-06-02, 04:20:30</p>
+        <p><span>最后更新:</span>2016-06-02, 18:16:41</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/02/The-first-article-Metal/" title="Metal入门一">http://hansoncoder.com/2016/06/02/The-first-article-Metal/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.com/2016/06/02/The-first-article-Metal/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/03/22/new-configuration-to-deploy/">
+                    Blog本地目录丢失，重新配置部署
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Metal概要"><span class="toc-number">1.</span> <span class="toc-text">Metal概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意点"><span class="toc-number">2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发步骤"><span class="toc-number">3.</span> <span class="toc-text">开发步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发实践"><span class="toc-number">4.</span> <span class="toc-text">开发实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Metal入门一　| Hanson's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/06/02/The-first-article-Metal/" data-title="Metal入门一" data-url="http://hansoncoder.com/2016/06/02/The-first-article-Metal/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hansoncoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://hansoncoder.com/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/03/22/new-configuration-to-deploy/" title="下一篇: Blog本地目录丢失，重新配置部署">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Hanson
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

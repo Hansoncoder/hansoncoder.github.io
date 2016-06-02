@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hanson" />
+
+
+
+<meta name="description" content="面向对象程序设计的三大特性：封装、继承及多态，本文主要总结了封装的特性以及Objective-C中的应用。并以实例分析、代码解答的方式来完成对封装的应用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象程序设计(一)">
+<meta property="og:url" content="http://hansoncoder.com/2013/04/11/Objective-C-Five/index.html">
+<meta property="og:site_name" content="Hanson's Blog">
+<meta property="og:description" content="面向对象程序设计的三大特性：封装、继承及多态，本文主要总结了封装的特性以及Objective-C中的应用。并以实例分析、代码解答的方式来完成对封装的应用。">
+<meta property="og:image" content="http://hansoncoder.com/resources/Objective-C/13.png">
+<meta property="og:updated_time" content="2016-06-02T08:02:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象程序设计(一)">
+<meta name="twitter:description" content="面向对象程序设计的三大特性：封装、继承及多态，本文主要总结了封装的特性以及Objective-C中的应用。并以实例分析、代码解答的方式来完成对封装的应用。">
+<meta name="twitter:image" content="http://hansoncoder.com/resources/Objective-C/13.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="Hanson&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>面向对象程序设计(一) | Hanson&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/myAvatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hanson</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC-MRC/">ARC&MRC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hooks/">Hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metal入门/">Metal入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL库/">STL库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组/">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动开发，喜欢玩技术。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hanson</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/myAvatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hanson</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Objective-C-Five" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/04/11/Objective-C-Five/" class="article-date">
+      <time datetime="2013-04-11T06:21:08.000Z" itemprop="datePublished">2013-04-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      面向对象程序设计(一)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Objective-C基础/">Objective-C基础</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　面向对象程序设计的三大特性：封装、继承及多态，本文主要总结了封装的特性以及Objective-C中的应用。并以实例分析、代码解答的方式来完成对封装的应用。</p>
+<a id="more"></a>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>　　是把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。</p>
+<h3 id="封装的作用："><a href="#封装的作用：" class="headerlink" title="封装的作用："></a>封装的作用：</h3><blockquote>
+<ul>
+<li>公开代码单元的对外接口、隐藏其具体实现，使得代码易改且安全。</li>
+<li>对成员变量进行访问控制、保护了对象内部属性、过滤数据。</li>
+<li>降低软件开发复杂度。</li>
+<li>避免名字冲突。</li>
+</ul>
+</blockquote>
+<h3 id="Objective-C命名规范："><a href="#Objective-C命名规范：" class="headerlink" title="Objective-C命名规范："></a>Objective-C命名规范：</h3><p>　　为了程序员的交流，进入每个团体开发程序时都应该遵循团体规范，我们学IOS要开发的是苹果应用，我们必须遵循苹果官方规范</p>
+<blockquote>
+<ul>
+<li>成员变量：使用下划线（<em>）开头（</em>名称），名称可读性要高。</li>
+<li>set方法使用名称：set+成员变量名称（成员变量名去掉下划线，将第一个字母大写）</li>
+<li>get方法使用名称：成员变量名称（成员变量名称去掉下划线）</li>
+</ul>
+</blockquote>
+<h3 id="实例演示"><a href="#实例演示" class="headerlink" title="实例演示"></a>实例演示</h3><p>　　左边的图是要设计程序的场景，右边文字是对左边进行分析设计的一些规范。</p>
+<p><img src="/resources/Objective-C/13.png" alt="实例展示"></p>
+<h3 id="编码实现"><a href="#编码实现" class="headerlink" title="编码实现"></a>编码实现</h3><ul>
+<li>选手类Player</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是Player.h文件</span></span><br><span class="line"></span><br><span class="line">import &lt;Foundation/Foundation.h&gt;  </span><br><span class="line"><span class="comment">//定义一个枚举类型，说明出拳头只能出(石头、剪刀、布)三种类型  </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span>  </span><br><span class="line">&#123;  </span><br><span class="line">    Hand石头,Hand剪刀,Hand布  </span><br><span class="line">&#125;Hand;  </span><br><span class="line"><span class="comment">//定义选手类  </span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Player</span> : <span class="title">NSObject</span>  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSString</span> *_name;<span class="comment">//定义选手名字  </span></span><br><span class="line">    <span class="keyword">int</span> _score;<span class="comment">//定义选手得分（赢的次数）  </span></span><br><span class="line">    Hand _hand;<span class="comment">//电一选手出拳类型（石头、剪刀、布）  </span></span><br><span class="line">      </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//外部不可以直接访问选手的成员变量达到了封装的目的，所以要设定以下的set/get方法来给外部操作  </span></span><br><span class="line">- (<span class="keyword">void</span>) setName:(<span class="built_in">NSString</span> *)name;<span class="comment">//定义set方法，让外部（main）函数给对象设置姓名  </span></span><br><span class="line">- (<span class="keyword">void</span>) setScore;<span class="comment">//定义set方法，让外部（Referree）函数（裁判）修改对象的分数  </span></span><br><span class="line">- (<span class="built_in">NSString</span> *)name;<span class="comment">//定义了get方法，让外部函数获取对象的姓名，方法名和成员变量名一致（命名规范）  </span></span><br><span class="line">- (<span class="keyword">int</span>) score;<span class="comment">//定义了get方法，让外部函数获取对象的得分  </span></span><br><span class="line">- (Hand) hand;<span class="comment">//定义了get方法，让外部（Referree）函数（裁判）获取你出的拳头是什么。  </span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是Player.m文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Player.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"time.h"</span>  </span></span><br><span class="line"><span class="comment">//实现一个选手类  </span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Player</span>  </span></span><br><span class="line">- (<span class="keyword">id</span>) init<span class="comment">//重写初始化方法，添加随机函数种子  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];<span class="comment">//先调用父类初始化方法  </span></span><br><span class="line">    srand((<span class="keyword">unsigned</span>)time(<span class="literal">NULL</span>));<span class="comment">//添加随机函数种子，让选手出的拳头随机使出。  </span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;<span class="comment">//初始化方法需要返回一个指针给调用函数  </span></span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">void</span>) setName:(<span class="built_in">NSString</span> *)name;<span class="comment">//让外部函数设置选手姓名  </span></span><br><span class="line">&#123;  </span><br><span class="line">    _name = name;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">void</span>) setScore<span class="comment">//选手赢了，给选手加分  </span></span><br><span class="line">&#123;  </span><br><span class="line">    _score++;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="built_in">NSString</span> *)name<span class="comment">//让外部函数获取选手姓名  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span> _name;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">int</span>) score<span class="comment">//让外部函数获取选手分数  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span>  _score;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">- (Hand) hand<span class="comment">//实现getHand方法，（苹果对get方法命名规范：不用get关键字，只要成员变量名）  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">int</span> i = rand()%<span class="number">3</span>;<span class="comment">//随机产生三种拳头的一种  </span></span><br><span class="line">    <span class="keyword">if</span> (i==<span class="number">0</span>) &#123;  </span><br><span class="line">        _hand =Hand石头;  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@出：石头"</span>,_name);  </span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (i==<span class="number">1</span>)&#123;  </span><br><span class="line">        _hand = Hand剪刀;  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@出：剪刀"</span>,_name);  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">        _hand = Hand布;  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@出：布"</span>,_name);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> _hand;<span class="comment">//将产生的拳头结果返回给调用的函数  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>裁判类Referee</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Referee.h文件：</span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Player.h"</span>  </span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Referee</span> : <span class="title">NSObject</span>  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSString</span> *_name;<span class="comment">//裁判名字  </span></span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">void</span>) setName:(<span class="built_in">NSString</span> *)name;<span class="comment">//定义set方法，让外部函数设置裁判名字  </span></span><br><span class="line">- (<span class="keyword">void</span>) announceResult:(Player *)p1 andResult: (Player *)p2;<span class="comment">//定义裁判判决选手输赢的方法  </span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Referee.m文件：</span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Referee.h"</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Referee</span>  </span></span><br><span class="line">- (<span class="keyword">void</span>) setName:(<span class="built_in">NSString</span> *)name<span class="comment">//实现外部函数设置裁判的名字  </span></span><br><span class="line">&#123;  </span><br><span class="line">    _name = name;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">void</span>) announceResult:(Player *)p1 andResult:(Player *)p2<span class="comment">//实现判决方法  </span></span><br><span class="line">&#123;  </span><br><span class="line">    Hand h1 = p1.hand;<span class="comment">//获取选手1的拳头（点语法）相当于调用了p1的get方法）  </span></span><br><span class="line">    Hand h2 = p2.hand;<span class="comment">//获取选手2的拳头（ p2.hand＝＝[p2 hand] ）  </span></span><br><span class="line">    <span class="comment">//0--石头  1--剪刀  2--布（0代表“石头”，1代表“剪刀”，2代表“布”）  </span></span><br><span class="line">    <span class="keyword">if</span> (h2 - h1==<span class="number">1</span>||h2-h1 == <span class="number">-2</span>)<span class="comment">//通过两个做差，就知道谁赢谁输  </span></span><br><span class="line">    &#123;  </span><br><span class="line">        [p1 setScore];  </span><br><span class="line">        <span class="comment">//采用点语法（p1.score＝＝[p1 score]）,取出p1的数据相当于调用了对象的get方法  </span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@判决：%@赢了加1分，分数：%d"</span>,_name,p1.name,p1.score);  </span><br><span class="line">          </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>((h2 - h1==<span class="number">-1</span>||h2-h1 == <span class="number">2</span>))  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="comment">//采用点语法（p2.name＝＝[p2 name]）,取出p2的数据相当于调用了对象的get方法  </span></span><br><span class="line">        [p2 setScore];  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@判决：%@赢了加1分，分数：%d"</span>,_name,p2.name,p2.score);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@判决：本次平手，继续请执行"</span>,_name);  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>主函数main</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"stdlib.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Player.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Referee.h"</span>  </span></span><br><span class="line"><span class="keyword">void</span> Show(Referee *r,Player *p1,Player *p2);<span class="comment">//定义人机交互菜单  </span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </span><br><span class="line">        Player *p1 = [[Player alloc]init];<span class="comment">//初始化选手1  </span></span><br><span class="line">        p1.name = <span class="string">@"张三"</span>;<span class="comment">//给选手1取名字(点语法)（相当于调用p1的set方法）p1.name == [p1 name]  </span></span><br><span class="line">        Player *p2 = [[Player alloc]init];<span class="comment">//初始化选手2  </span></span><br><span class="line">        p2.name = <span class="string">@"李四"</span>;<span class="comment">//给选手2取名字(点语法)（相当于调用p2的set方法）p2.name == [p2 name]  </span></span><br><span class="line">        Referee *r = [[Referee alloc]init];<span class="comment">//初始化裁判员  </span></span><br><span class="line">        r.name = <span class="string">@"王五裁判"</span>;<span class="comment">//给裁判取名字(点语法)（相当于调用r的set方法）r.name == [r name]  </span></span><br><span class="line">        Show(r, p1, p2);<span class="comment">//显示人机交互菜单,完成人机交互操作  </span></span><br><span class="line">          </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">void</span> Show(Referee *r,Player *p1,Player *p2)<span class="comment">//显示人机交互界面  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;  </span><br><span class="line">    <span class="keyword">char</span> ch;  </span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">          </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"输入回车猜拳,输入其他退出程序...."</span>);<span class="comment">//提示输入信息  </span></span><br><span class="line">        ch = getchar();<span class="comment">//输入信息，来确认你是否退出程序  </span></span><br><span class="line">        system(<span class="string">"clear"</span>);<span class="comment">//输入结束，清屏一下，方便观察下次结果  </span></span><br><span class="line">        <span class="keyword">if</span>(ch!=<span class="string">'\n'</span>)<span class="comment">//判断输入内容，如果输入不是回车，立即退出循环  </span></span><br><span class="line">            <span class="keyword">break</span>;  </span><br><span class="line">        count ++;<span class="comment">//如果输入内容是回车，那么执行一下操作，猜拳数+1  </span></span><br><span class="line">        [r announceResult:p1 andResult:p2];<span class="comment">//裁判通过获取两个选手的拳头进行判决  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//退出猜拳后，显示猜拳结果  </span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"---------------------------------"</span>);  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"共猜了：%d次,%d次平手"</span>,count,(count - p1.score-p2.score));  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@赢了：%d次"</span>,p1.name,p1.score);  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@赢了：%d次"</span>,p2.name,p2.score);  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"欢迎使用本程序，谢谢您的光临....."</span>);  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"---------------------------------"</span>);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输入与输出</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一次输入 回车，输出如下内容</span></span><br><span class="line"></span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">40</span>:<span class="number">55.038</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 张三出：布  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">40</span>:<span class="number">55.038</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 李四出：石头  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">40</span>:<span class="number">55.038</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 王五裁判判决：张三赢了加<span class="number">1</span>分，分数：<span class="number">1</span>  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">40</span>:<span class="number">55.038</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 输入回车猜拳,输入其他退出程序....  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二次输入 回车，输出如下内容</span></span><br><span class="line"></span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">41</span>:<span class="number">05.935</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 张三出：剪刀  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">41</span>:<span class="number">05.935</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 李四出：石头  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">41</span>:<span class="number">05.935</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 王五裁判判决：李四赢了加<span class="number">1</span>分，分数：<span class="number">1</span>  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">11</span>:<span class="number">41</span>:<span class="number">05.935</span> a.out[<span class="number">3990</span>:<span class="number">310855</span>] 输入回车猜拳,输入其他退出程序....</span><br></pre></td></tr></table></figure>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>　　以上实力中，选手类中的_hand没有set方法,可以尝试一下在main.m函数里面调用set方法设置选手中了_hand。如果调用不成功，说明不可以修改选手中的_hand成员变量，从而达到了封装目的，自己成员变量不可以让外部随意访问。除非自己提供方法给外部函数。如选手的_name提供了set、get的方法，外部函数可以通过这两个方法对选手的_name成员变量进行修改和取值。</p>
+<ul>
+<li>setter作用及规范：</li>
+</ul>
+<blockquote>
+<ul>
+<li>提供一个方法给外界设置成员变量值、可以在方法实现里面对参数的值进行过滤</li>
+<li>方法名必须以set开头</li>
+<li>Set后面跟上成员变量名（去掉开头的下划线），成员变量的首字母必须大写</li>
+<li>返回值一定是void</li>
+<li>一定要接收一个以上的参数、而且参数类型跟成员变量类型一致</li>
+<li>形参的名称不能跟成员变量名一样</li>
+</ul>
+</blockquote>
+<ul>
+<li>getter作用及规范</li>
+</ul>
+<blockquote>
+<ul>
+<li>返回内部成员变量</li>
+<li>肯定有返回值、返回类型肯定和成员变量类型一致</li>
+<li>方法名和变量名（去掉开头下划线）一致</li>
+<li>不需要接收任何参数</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Hanson</a></p>
+        <p><span>发布时间:</span>2013-04-11, 14:21:08</p>
+        <p><span>最后更新:</span>2016-06-02, 16:02:50</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2013/04/11/Objective-C-Five/" title="面向对象程序设计(一)">http://hansoncoder.com/2013/04/11/Objective-C-Five/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.com/2013/04/11/Objective-C-Five/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2013/04/20/Objective-C-Array/">
+                    Objective-C数组NSArray/NSMutableArray
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2013/04/11/Objective-C-Six/">
+                    面向对象程序设计(二)
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#封装"><span class="toc-number">1.</span> <span class="toc-text">封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#封装的作用："><span class="toc-number">1.1.</span> <span class="toc-text">封装的作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Objective-C命名规范："><span class="toc-number">1.2.</span> <span class="toc-text">Objective-C命名规范：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例演示"><span class="toc-number">1.3.</span> <span class="toc-text">实例演示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码实现"><span class="toc-number">1.4.</span> <span class="toc-text">编码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.5.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"面向对象程序设计(一)　| Hanson's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2013/04/11/Objective-C-Five/" data-title="面向对象程序设计(一)" data-url="http://hansoncoder.com/2013/04/11/Objective-C-Five/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hansoncoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://hansoncoder.com/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2013/04/20/Objective-C-Array/" title="上一篇: Objective-C数组NSArray/NSMutableArray">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2013/04/11/Objective-C-Six/" title="下一篇: 面向对象程序设计(二)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Hanson
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

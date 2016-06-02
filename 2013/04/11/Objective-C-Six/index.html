@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hanson" />
+
+
+
+<meta name="description" content="面向对象程序设计的三大特性：封装、继承及多态，上一篇文章我们介绍了封装，本文就介绍剩下两个：继承与多态。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象程序设计(二)">
+<meta property="og:url" content="http://hansoncoder.com/2013/04/11/Objective-C-Six/index.html">
+<meta property="og:site_name" content="Hanson's Blog">
+<meta property="og:description" content="面向对象程序设计的三大特性：封装、继承及多态，上一篇文章我们介绍了封装，本文就介绍剩下两个：继承与多态。">
+<meta property="og:image" content="http://hansoncoder.com/resources/Objective-C/14.png">
+<meta property="og:updated_time" content="2016-06-02T08:02:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象程序设计(二)">
+<meta name="twitter:description" content="面向对象程序设计的三大特性：封装、继承及多态，上一篇文章我们介绍了封装，本文就介绍剩下两个：继承与多态。">
+<meta name="twitter:image" content="http://hansoncoder.com/resources/Objective-C/14.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="Hanson&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>面向对象程序设计(二) | Hanson&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/myAvatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hanson</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC-MRC/">ARC&MRC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hooks/">Hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metal入门/">Metal入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL库/">STL库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组/">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动开发，喜欢玩技术。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hanson</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/myAvatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hanson</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Objective-C-Six" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/04/11/Objective-C-Six/" class="article-date">
+      <time datetime="2013-04-11T06:21:08.000Z" itemprop="datePublished">2013-04-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      面向对象程序设计(二)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Objective-C基础/">Objective-C基础</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　面向对象程序设计的三大特性：封装、继承及多态，上一篇文章我们介绍了封装，本文就介绍剩下两个：继承与多态。</p>
+<a id="more"></a>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>　　如果一个A类（狗）继承自另一个B类（动物），就把这个A类称为”B类的子类”，而把B类称为”A类的父类”，即狗是动物的儿子，动物是狗的父亲。继承可使子类具有父类的各种属性和方法，而不需要再次编写相同的代码。</p>
+<h3 id="封装的作用："><a href="#封装的作用：" class="headerlink" title="封装的作用："></a>封装的作用：</h3><blockquote>
+<ul>
+<li>对于多个类的重复代码，可以抽取为其父类，达到共享代码目的。</li>
+<li>可以快捷开发程序，在别人的开发基础上进行（继承）扩展就OK了。</li>
+<li>方便软件升级、优化、维护</li>
+<li>子类可以重写父类方法</li>
+</ul>
+</blockquote>
+<h3 id="Self-amp-amp-supe"><a href="#Self-amp-amp-supe" class="headerlink" title="Self &amp;&amp; supe"></a>Self &amp;&amp; supe</h3><blockquote>
+<ul>
+<li>self相当于JAVA里面的this指针，就是指向当前对象（当前类）的指针。</li>
+<li>Self-&gt;成员变量，访问当前对象的成员变量</li>
+<li>[self  方法名]，调用当前对象/类的方法（只能在成员方法或者类方法中使用）</li>
+<li>对象的成员方法调用self，self指向对象；类方法调用self，self指向类。</li>
+<li>super是用于调用父类的方法，经常在子类继承时候，重写父类方法的时候使用</li>
+<li>super在对象方法中，可以调用父类对象方法，在类方法中，可调用父类的类方法</li>
+</ul>
+</blockquote>
+<h3 id="isa指针"><a href="#isa指针" class="headerlink" title="isa指针"></a>isa指针</h3><p>　　每个类中都有一个super class指针，该指针指向自己的父类。每个对象中有一个isa指针，该指针指向调用该对象的类。</p>
+<blockquote>
+<ul>
+<li>isa：每个被创建的对象中有一个isa隐藏指针，该指针指向调用该对象的类。</li>
+<li>isa：[stu study];表示给stu所指向的对象发送一条study消息，调用对象的study方法，此时对象会顺着内部的isa指针找到存储于类中的study方法执行。</li>
+<li>isa：是对象中的隐藏指针，指向创建这个对象的类。</li>
+</ul>
+</blockquote>
+<h3 id="继承与组合"><a href="#继承与组合" class="headerlink" title="继承与组合"></a>继承与组合</h3><ul>
+<li>当两个类拥有相同的属性和方法时，就可以将相同的属性和方法抽取到一个父类中。</li>
+<li>当A类完全拥有B类中的部分属性和方法时，可以考虑继承,也可以考虑使用组合。就看A、B两个类的关系：</li>
+</ul>
+<blockquote>
+<p>继承：A是B的情况。举例：学生、老师是人，可以让学生类、老师类继承 人类<br>组合：A拥有B的情况。举例：学生有书，可以让书这个类作为学生类的属性（学生的一部分由书组成）</p>
+</blockquote>
+<ul>
+<li>图像分析<br><img src="/resources/Objective-C/14.png" alt="继承与组合"></li>
+</ul>
+<h3 id="继承的使用注意"><a href="#继承的使用注意" class="headerlink" title="继承的使用注意"></a>继承的使用注意</h3><ul>
+<li>父类必须在子类前面声明。</li>
+<li>不允许子类定义和父类相同名称的成员变量名。</li>
+<li>重写即子类重新实现了父类中的某个方法，覆盖了父类以前的实现。</li>
+<li>OC语言是单继承语言。在OC语言中，基本上所有类的根类都是NSObject类。</li>
+</ul>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>　　面向对象语言的程序设计中，接口的多种不同的实现方式即为多态，也就是说：允许父类的指针指向子类对象。在程序当运行时，程序会动态检测父类指针指向的真实对象，使运行中的父类指针当作真实对象使用。</p>
+<h3 id="使用注意事项"><a href="#使用注意事项" class="headerlink" title="使用注意事项"></a>使用注意事项</h3><ul>
+<li>多态前提条件：必须有继承关系（有父类–子类关系）</li>
+<li>代码的体现：父类类型的指针指向子类对象</li>
+<li>好处：如果方法参数中使用的是父类类型，则可以传入父类和子类对象</li>
+<li>局限性：父类类型的变量不能直接调用子类特有的方法，如果必须要调用，则必须强制将指针转换为子类类型。</li>
+</ul>
+<h3 id="实例演示"><a href="#实例演示" class="headerlink" title="实例演示"></a>实例演示</h3><ul>
+<li>main文件</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> 1.本程序设计说明 继承与组合 的使用场合 </span><br><span class="line">  学生是一个人     学生－－人：继承 </span><br><span class="line">  学生拥有一本书   学生－－书：组合 </span><br><span class="line">  书拥有一个作者   书－－人（作者）：组合 </span><br><span class="line">2.说明self／super／isa指针 </span><br><span class="line">  self/super出现在对象方法中，self/super指向对象，出现在类方法中，self/super指向类 </span><br><span class="line">  self：指向的当前对象或者当前类 </span><br><span class="line">  super：指向当前对象的父类对象或者当前类的父类 </span><br><span class="line">  isa：每个被创建的对象中有一个isa隐藏指针，该指针指向调用该对象的类。 </span><br><span class="line">  isa：[stu study];表示给stu所指向的对象发送一条study消息，调用对象的study方法，此时对象会顺着内部的isa指针找到存储于类中的study方法执行。 </span><br><span class="line"> isa是对象中的隐藏指针，指向创建这个对象的类。 </span><br><span class="line">3.说明继承与多态 </span><br><span class="line"> */</span>  </span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Book.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Student.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Teacher.h"</span>  </span></span><br><span class="line"><span class="keyword">void</span> test(Person *p);<span class="comment">//测试多态使用的函数  </span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </span><br><span class="line">        <span class="comment">//创建一个老师  </span></span><br><span class="line">        Teacher *teacher = [[Teacher alloc]init];  </span><br><span class="line">        teacher.name = <span class="string">@"李四"</span>;  </span><br><span class="line">        teacher.age = <span class="number">36</span>;  </span><br><span class="line">        teacher.teach = <span class="string">@"IOS高级课程"</span>;  </span><br><span class="line">          </span><br><span class="line">        <span class="comment">//创建一个人，作为书的作者  </span></span><br><span class="line">        Person *writer = [[Person alloc]init];  </span><br><span class="line">        writer.name = <span class="string">@"王五"</span>;  </span><br><span class="line">        writer.age = <span class="number">55</span>;  </span><br><span class="line">        <span class="comment">//创建一本书  </span></span><br><span class="line">        Book *book = [[Book alloc]init];  </span><br><span class="line">        book.name = <span class="string">@"读者"</span>;  </span><br><span class="line">        book.publishers = <span class="string">@"甘肃人民出版社"</span>;  </span><br><span class="line">        book.writer = writer;  </span><br><span class="line">          </span><br><span class="line">        <span class="comment">//创建一个学生  </span></span><br><span class="line">        Student *stu = [[Student alloc]init];  </span><br><span class="line">        stu.name = <span class="string">@"张三"</span>;  </span><br><span class="line">        stu.no = <span class="string">@"201207323141"</span>;  </span><br><span class="line">        stu.age = <span class="number">10</span>;  </span><br><span class="line">        stu.book = book;  </span><br><span class="line">        [stu study];  </span><br><span class="line">        [Student speak];  </span><br><span class="line">          </span><br><span class="line">        <span class="comment">//一下进入测试多态的函数test  </span></span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"调用test，传入学生作为参数！"</span>);  </span><br><span class="line">        test(stu);  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"-------------------------------"</span>);  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"调用test，传入老师作为参数!"</span>);  </span><br><span class="line">        test(teacher);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">void</span> test(Person *p)  </span><br><span class="line">&#123;  </span><br><span class="line">    [p speak];<span class="comment">//调用p指向的对象或者类的 speak方法  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>人类Person</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// Person.h文件</span><br><span class="line"></span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;  </span><br><span class="line">  </span><br><span class="line">//定义一个基础类：人  </span><br><span class="line">@interface Person : NSObject  </span><br><span class="line">&#123;  </span><br><span class="line">    NSString *_name;//姓名  </span><br><span class="line">    int _age;//年龄  </span><br><span class="line">&#125;  </span><br><span class="line">//姓名的set／get方法  </span><br><span class="line">- (void) setName:(NSString *)name;  </span><br><span class="line">- (NSString *)name;  </span><br><span class="line">//年龄的set/get方法  </span><br><span class="line">- (void) setAge:(int) age;  </span><br><span class="line">- (int) age;  </span><br><span class="line">//定义一个speak类方法  </span><br><span class="line">+ (void) speak;  </span><br><span class="line">//定义一个speak对象方法  </span><br><span class="line">- (void) speak;  </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// Person.m文件</span><br><span class="line"></span><br><span class="line">#import &quot;Person.h&quot;  </span><br><span class="line">  </span><br><span class="line">@implementation Person  </span><br><span class="line">- (void) setName:(NSString *)name  </span><br><span class="line">&#123;  </span><br><span class="line">    _name = name;  </span><br><span class="line">&#125;  </span><br><span class="line">- (void) setAge:(int) age  </span><br><span class="line">&#123;  </span><br><span class="line">    _age = age;  </span><br><span class="line">&#125;  </span><br><span class="line">- (NSString *)name  </span><br><span class="line">&#123;  </span><br><span class="line">    return _name;  </span><br><span class="line">&#125;  </span><br><span class="line">- (int) age  </span><br><span class="line">&#123;  </span><br><span class="line">    return _age;  </span><br><span class="line">&#125;  </span><br><span class="line">- (void) speak  </span><br><span class="line">&#123;  </span><br><span class="line">    NSLog(@&quot;我是一个对象，该speak可以访问成员变量，我知道今年%d岁了&quot;,_age);  </span><br><span class="line">&#125;  </span><br><span class="line">+ (void) speak  </span><br><span class="line">&#123;  </span><br><span class="line">    NSLog(@&quot;我是一个类，该speak方法不能访问我的成员变量！！&quot;);  </span><br><span class="line">&#125;  </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Book文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// 书类Book</span><br><span class="line"></span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;  </span><br><span class="line">//书要拥有一个作者   书---作者：组合关系  </span><br><span class="line">@class Person;//本文件只需要知道Person是一个类就可以了，不需要里面的方法，所以用class而不用#improt  </span><br><span class="line">@interface Book : NSObject  </span><br><span class="line">&#123;  </span><br><span class="line">    NSString *_name;//书名  </span><br><span class="line">    NSString *_publishers;//出版社  </span><br><span class="line">    Person *_writer;//作者  </span><br><span class="line">&#125;  </span><br><span class="line">//书名的set/get方法  </span><br><span class="line">- (void) setName:(NSString *)name;  </span><br><span class="line">- (NSString *)name;  </span><br><span class="line">//出版社的set/get方法  </span><br><span class="line">- (void) setPublishers:(NSString *)publishers;  </span><br><span class="line">- (NSString *)publishers;  </span><br><span class="line">//作者的set/get方法  </span><br><span class="line">- (void) setWriter:(Person *)writer;  </span><br><span class="line">- (Person *)writer;  </span><br><span class="line">  </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// Book.m文件</span><br><span class="line"></span><br><span class="line">#import &quot;Book.h&quot;  </span><br><span class="line">#include &quot;Person.h&quot;  </span><br><span class="line">@implementation Book  </span><br><span class="line">- (void) setName:(NSString *)name  </span><br><span class="line">&#123;  </span><br><span class="line">    _name = name;  </span><br><span class="line">&#125;  </span><br><span class="line">- (void) setPublishers:(NSString *)publishers  </span><br><span class="line">&#123;  </span><br><span class="line">    _publishers = publishers;  </span><br><span class="line">&#125;  </span><br><span class="line">- (void) setWriter:(Person *)writer  </span><br><span class="line">&#123;  </span><br><span class="line">    _writer = writer;  </span><br><span class="line">&#125;  </span><br><span class="line">- (NSString *)name  </span><br><span class="line">&#123;  </span><br><span class="line">    return _name;  </span><br><span class="line">&#125;  </span><br><span class="line">- (NSString *)publishers  </span><br><span class="line">&#123;  </span><br><span class="line">    return _publishers;  </span><br><span class="line">&#125;  </span><br><span class="line">- (Person *)writer  </span><br><span class="line">&#123;  </span><br><span class="line">    return _writer;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>学生类Student</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Student.h文件：</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span>  </span></span><br><span class="line"><span class="class"><span class="keyword">@class</span> <span class="title">Book</span>;//学生拥有一本书  学生---书：组合关系  </span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">Person</span>//学生是一个人  学生---人：继承关系  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="comment">//学生的姓名和年龄，从人那里继承过来，不能重复定义  </span></span><br><span class="line">    <span class="built_in">NSString</span> *_no;<span class="comment">//学生的学号  </span></span><br><span class="line">    Book *_book;<span class="comment">//学生拥有一本书  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//学号的set/get方法  </span></span><br><span class="line">- (<span class="keyword">void</span>) setNo:(<span class="built_in">NSString</span> *)no;  </span><br><span class="line">- (<span class="built_in">NSString</span> *) no;  </span><br><span class="line"><span class="comment">//书的set/get方法  </span></span><br><span class="line">- (<span class="keyword">void</span>) setBook:(Book *) book;  </span><br><span class="line">- (Book *) book;  </span><br><span class="line"><span class="comment">//学生的学习方法  </span></span><br><span class="line">- (<span class="keyword">void</span>) study;  </span><br><span class="line"><span class="comment">//以上均为对象方法，以下有两个类方法，学生类的说话方法、走路方法  </span></span><br><span class="line">+ (<span class="keyword">void</span>) speak;  </span><br><span class="line">+ (<span class="keyword">void</span>) walk;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Student.m文件：</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Student.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Book.h"</span>  </span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span>  </span></span><br><span class="line">- (<span class="keyword">void</span>) setNo:(<span class="built_in">NSString</span> *)no  </span><br><span class="line">&#123;  </span><br><span class="line">    _no = no;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">void</span>) setBook:(Book *) book  </span><br><span class="line">&#123;  </span><br><span class="line">    _book = book;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="built_in">NSString</span> *) no  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span> _no;  </span><br><span class="line">&#125;  </span><br><span class="line">- (Book *) book  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span> _book;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">void</span>) study  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"我是对象，我在学习:%@,接下来调用[super speak]"</span>,_book.name);  </span><br><span class="line">    [<span class="keyword">super</span> speak];  </span><br><span class="line">      </span><br><span class="line">&#125;  </span><br><span class="line">+ (<span class="keyword">void</span>) speak  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"我是类,不是对象!!,接下来调用[self walk]"</span>);  </span><br><span class="line">    [<span class="keyword">self</span> walk];<span class="comment">//利用self调用本对象的walk方法  </span></span><br><span class="line">&#125;  </span><br><span class="line">+ (<span class="keyword">void</span>) walk  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"我是类，我在走路!!，接下来调用[super speak]"</span>);  </span><br><span class="line">    [<span class="keyword">super</span> speak];  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>老师类Teacher</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Teacher.h文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Teacher</span> : <span class="title">Person</span>  </span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSString</span> *_teach;<span class="comment">//任课科目  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//任课科目的set/get方法  </span></span><br><span class="line">- (<span class="keyword">void</span>) setTeach:(<span class="built_in">NSString</span> *)teach;  </span><br><span class="line">- (<span class="built_in">NSString</span> *)teach;  </span><br><span class="line"><span class="comment">//Teacher的speak方法  </span></span><br><span class="line">- (<span class="keyword">void</span>) speak;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Teacher.m文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Teacher.h"</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Teacher</span>  </span></span><br><span class="line">- (<span class="keyword">void</span>) setTeach:(<span class="built_in">NSString</span> *)teach  </span><br><span class="line">&#123;  </span><br><span class="line">    _teach = teach;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="built_in">NSString</span> *) teach  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span> _teach;  </span><br><span class="line">&#125;  </span><br><span class="line">- (<span class="keyword">void</span>) speak  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"我是一名老师，我的名字叫%@,担任科目%@!!"</span>,_name,_teach);  </span><br><span class="line">      </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>输入与输出</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.506</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 我是对象，我在学习:读者,接下来调用[<span class="keyword">super</span> speak]  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.515</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 我是一个对象，该speak可以访问成员变量，我知道今年<span class="number">10</span>岁了  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.515</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 我是类,不是对象!!,接下来调用[<span class="keyword">self</span> walk]  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.516</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 我是类，我在走路!!，接下来调用[<span class="keyword">super</span> speak]  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.516</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 我是一个类，该speak方法不能访问我的成员变量！！  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.516</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 调用test，传入学生作为参数！  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.516</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 我是一个对象，该speak可以访问成员变量，我知道今年<span class="number">10</span>岁了  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.516</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] -------------------------------  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.516</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 调用</span><br><span class="line">test，传入老师作为参数!  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-11</span> <span class="number">15</span>:<span class="number">02</span>:<span class="number">33.517</span> <span class="number">02</span>-OC三大特性[<span class="number">475</span>:<span class="number">11985</span>] 我是一名老师，我的名字叫李四,担任科目IOS高级课程!!</span><br></pre></td></tr></table></figure>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>　　以上实力中，选手类中的_hand没有set方法,可以尝试一下在main.m函数里面调用set方法设置选手中了_hand。如果调用不成功，说明不可以修改选手中的_hand成员变量，从而达到了封装目的，自己成员变量不可以让外部随意访问。除非自己提供方法给外部函数。如选手的_name提供了set、get的方法，外部函数可以通过这两个方法对选手的_name成员变量进行修改和取值。</p>
+<ul>
+<li>setter作用及规范：</li>
+</ul>
+<blockquote>
+<ul>
+<li>提供一个方法给外界设置成员变量值、可以在方法实现里面对参数的值进行过滤</li>
+<li>方法名必须以set开头</li>
+<li>Set后面跟上成员变量名（去掉开头的下划线），成员变量的首字母必须大写</li>
+<li>返回值一定是void</li>
+<li>一定要接收一个以上的参数、而且参数类型跟成员变量类型一致</li>
+<li>形参的名称不能跟成员变量名一样</li>
+</ul>
+</blockquote>
+<ul>
+<li>getter作用及规范</li>
+</ul>
+<blockquote>
+<ul>
+<li>返回内部成员变量</li>
+<li>肯定有返回值、返回类型肯定和成员变量类型一致</li>
+<li>方法名和变量名（去掉开头下划线）一致</li>
+<li>不需要接收任何参数</li>
+</ul>
+</blockquote>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>继承</li>
+</ul>
+<blockquote>
+<ul>
+<li>抽取重复代码</li>
+<li>建立了类之间的联系</li>
+<li>子类中拥有父类中的所有成员变量和方法</li>
+<li>基本上所有的根类都是NSObject</li>
+<li>不允许子类定义与父类相同名称的成员变量</li>
+<li>重写：子类重新实现父类中的方法，覆盖父类以前的做法</li>
+<li>父类必须声明在子类前面</li>
+<li>调用某个对象的方法时，优先去当前对象中查找，如果找不到，去父类中找</li>
+</ul>
+</blockquote>
+<ul>
+<li>多态</li>
+</ul>
+<blockquote>
+<ul>
+<li>没有继承就没有多态</li>
+<li>代码的体现：父类类型的指针指向子类对象</li>
+<li>好处：如果函数\方法参数中使用的是父类类型，可以传入父类、子类对象</li>
+<li>局限性： 不能访问子类的属性（非要访问可以考虑强制转换）</li>
+<li>动态绑定：在运行时根据对象的类型确定动态调用的方法</li>
+</ul>
+</blockquote>
+<ul>
+<li>类方法</li>
+</ul>
+<blockquote>
+<ul>
+<li>加号（+）开头</li>
+<li>只能由类名调用</li>
+<li>类方法中不能访问成员变量（实例变量）</li>
+<li>不依赖于对象</li>
+<li>能用类方法，尽量用类方法</li>
+<li>场合：当方法内部不需要使用到成员变量（实例变量）时，就可以定义为类方法。类方法可以与对象方法重名。</li>
+</ul>
+</blockquote>
+<ul>
+<li>Self指针</li>
+</ul>
+<blockquote>
+<ul>
+<li>谁调用了当前方法，self就代表谁</li>
+<li>Self出现在对象方法中，self就代表对象</li>
+<li>Self出现在类方法中，self就代表类</li>
+<li>对象方法中利用“self-&gt;成员变量名”访问当前对象的内部成员变量</li>
+<li>[self  方法名]可以调动对象其他方法/类方法</li>
+</ul>
+</blockquote>
+<ul>
+<li>super指针</li>
+</ul>
+<blockquote>
+<ul>
+<li>直接调用父类中的某个方法</li>
+<li>super处在对象方法中，super就会调用父类中的对象方法</li>
+<li>super处在类方法中，super就会调用父类中的类方法</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Hanson</a></p>
+        <p><span>发布时间:</span>2013-04-11, 14:21:08</p>
+        <p><span>最后更新:</span>2016-06-02, 16:02:50</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2013/04/11/Objective-C-Six/" title="面向对象程序设计(二)">http://hansoncoder.com/2013/04/11/Objective-C-Six/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.com/2013/04/11/Objective-C-Six/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2013/04/11/Objective-C-Five/">
+                    面向对象程序设计(一)
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2013/04/04/Objective-C-Four/">
+                    Objective-C字符串处理核心类
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#继承"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#封装的作用："><span class="toc-number">1.1.</span> <span class="toc-text">封装的作用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Self-amp-amp-supe"><span class="toc-number">1.2.</span> <span class="toc-text">Self && supe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isa指针"><span class="toc-number">1.3.</span> <span class="toc-text">isa指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承与组合"><span class="toc-number">1.4.</span> <span class="toc-text">继承与组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承的使用注意"><span class="toc-number">1.5.</span> <span class="toc-text">继承的使用注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态"><span class="toc-number">2.</span> <span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用注意事项"><span class="toc-number">2.1.</span> <span class="toc-text">使用注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例演示"><span class="toc-number">2.2.</span> <span class="toc-text">实例演示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">2.3.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结-1"><span class="toc-number">2.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"面向对象程序设计(二)　| Hanson's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2013/04/11/Objective-C-Six/" data-title="面向对象程序设计(二)" data-url="http://hansoncoder.com/2013/04/11/Objective-C-Six/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hansoncoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://hansoncoder.com/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2013/04/11/Objective-C-Five/" title="上一篇: 面向对象程序设计(一)">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2013/04/04/Objective-C-Four/" title="下一篇: Objective-C字符串处理核心类">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Hanson
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

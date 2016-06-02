@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hanson" />
+
+
+
+<meta name="description" content="Foundation框架中常用的一些类的有数组（NSArray/NSMutableArray）、集合（NSSet/NSMutableSet）、字典（NSDictionary/NSMutableDictionary）、数字（NSNumber/NSValue）、日期（NSDate）、数据（NSData/NSMutableData）。这些类只能存放OC对象，如果想保存一些基本的C数（例如，int,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C数组NSArray/NSMutableArray">
+<meta property="og:url" content="http://hansoncoder.com/2013/04/20/Objective-C-Array/index.html">
+<meta property="og:site_name" content="Hanson's Blog">
+<meta property="og:description" content="Foundation框架中常用的一些类的有数组（NSArray/NSMutableArray）、集合（NSSet/NSMutableSet）、字典（NSDictionary/NSMutableDictionary）、数字（NSNumber/NSValue）、日期（NSDate）、数据（NSData/NSMutableData）。这些类只能存放OC对象，如果想保存一些基本的C数（例如，int,">
+<meta property="og:updated_time" content="2016-06-02T08:02:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C数组NSArray/NSMutableArray">
+<meta name="twitter:description" content="Foundation框架中常用的一些类的有数组（NSArray/NSMutableArray）、集合（NSSet/NSMutableSet）、字典（NSDictionary/NSMutableDictionary）、数字（NSNumber/NSValue）、日期（NSDate）、数据（NSData/NSMutableData）。这些类只能存放OC对象，如果想保存一些基本的C数（例如，int,">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="Hanson&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Objective-C数组NSArray/NSMutableArray | Hanson&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/myAvatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hanson</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC-MRC/">ARC&MRC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hooks/">Hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metal入门/">Metal入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL库/">STL库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组/">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动开发，喜欢玩技术。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hanson</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/myAvatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hanson</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Objective-C-Array" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/04/20/Objective-C-Array/" class="article-date">
+      <time datetime="2013-04-20T15:59:46.000Z" itemprop="datePublished">2013-04-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Objective-C数组NSArray/NSMutableArray
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Objective-C基础/">Objective-C基础</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　Foundation框架中常用的一些类的有数组（NSArray/NSMutableArray）、集合（NSSet/NSMutableSet）、字典（NSDictionary/NSMutableDictionary）、数字（NSNumber/NSValue）、日期（NSDate）、数据（NSData/NSMutableData）。这些类只能存放OC对象，如果想保存一些基本的C数<code>（例如，int, float, double, BOOL等）</code>，则需要将这些基本的C数据封装成NSNumber类型的对象，就可以被保存在这些类中。</p>
+<a id="more"></a>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>NSArray：是OC中静态的数组（不可变数组），只能存放OC对象（不能存放非OC对象，如int等类型数据），数组的最后一个元素一定是nil，表示结束。</li>
+<li>NSMutableArray：是OC中动态数组（可变数组），其继承于NSArray，可以改变里面存放的元素。</li>
+</ul>
+<h3 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种创建方式  </span></span><br><span class="line"><span class="built_in">NSArray</span> *a1 = @[<span class="string">@"One"</span>];  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第二种创建方式(initWithObjects)  </span></span><br><span class="line"><span class="built_in">NSArray</span> *a2 = [[<span class="built_in">NSArray</span> alloc]initWithObjects:<span class="string">@"Tow"</span>, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line"><span class="built_in">NSMutableArray</span> *ma2 = [[<span class="built_in">NSMutableArray</span> alloc]initWithObjects:<span class="string">@"Tow"</span>, <span class="literal">nil</span> <span class="literal">nil</span>]; </span><br><span class="line"></span><br><span class="line"><span class="comment">//第三种创建方式(arrayWithObject(s))  </span></span><br><span class="line"><span class="built_in">NSArray</span> *a3 = [<span class="built_in">NSArray</span> arrayWithObject:<span class="string">@"Three"</span>];  </span><br><span class="line"><span class="built_in">NSMutableArray</span> *ma3 = [<span class="built_in">NSMutableArray</span> arrayWithObject:<span class="string">@"Three"</span>];  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第四种创建方式（arrayWithArray）  </span></span><br><span class="line"><span class="built_in">NSArray</span> *a4 = [<span class="built_in">NSArray</span> arrayWithArray:a1];  </span><br><span class="line"><span class="built_in">NSMutableArray</span> *ma4 = [<span class="built_in">NSMutableArray</span> arrayWithArray:a1];  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第五种创建方式(读取文件，文件格式为XML)  </span></span><br><span class="line"><span class="built_in">NSArray</span> *a5 = [<span class="built_in">NSArray</span> arrayWithContentsOfFile:<span class="string">@"/Users/Mac/Desktop/IOS_study/a.xml"</span>];  </span><br><span class="line"><span class="built_in">NSMutableArray</span> *ma5 = [<span class="built_in">NSMutableArray</span> arrayWithContentsOfFile:<span class="string">@"/Users/Mac/Desktop/IOS_study/a.xml"</span>];  </span><br><span class="line"></span><br><span class="line"><span class="comment">//第六种创建方式(copy(产生不可变数组)、mutableCopy（产生可变数组）)  </span></span><br><span class="line"><span class="built_in">NSString</span> *a6 = [ma2 <span class="keyword">copy</span>];  </span><br><span class="line"><span class="built_in">NSString</span> *ma6 = [a2 mutableCopy];</span><br></pre></td></tr></table></figure>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li>由于NSMutableArray是NSArray的子类，那我只实验NSArray，NSMutableArray也和NSArray一致。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个数组  </span></span><br><span class="line"><span class="built_in">NSArray</span> *array = [[<span class="built_in">NSArray</span> alloc]initWithObjects:<span class="string">@"One"</span>,<span class="string">@"Tow"</span>,<span class="string">@"Three"</span>, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//按照索引值取出元素  </span></span><br><span class="line"><span class="keyword">id</span> noe = [array objectAtIndex:<span class="number">0</span>];<span class="comment">//去除第一个元素  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//获取数组中的个数  </span></span><br><span class="line"><span class="built_in">NSUInteger</span> count = [array count];<span class="comment">//count = 3;  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//判断数组中是否包含某个对象  </span></span><br><span class="line"><span class="built_in">BOOL</span> isContenTow = [array containsObject:<span class="string">@"Tow"</span>];<span class="comment">//是否包含Tow这个对象  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//返回一个对象在数组中的下标，找不到返回-1（NSNotFund）  </span></span><br><span class="line"><span class="built_in">NSUInteger</span> threeIndex = [array indexOfObject:<span class="string">@"Three"</span>];<span class="comment">//查找Three在数组中的下标，threeIndex ＝ 2；  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//如果数组中存放的是字符串，可以将数组中的字符串连接成NSString  </span></span><br><span class="line"><span class="built_in">NSString</span> *str = [array componentsJoinedByString:<span class="string">@"-"</span>];<span class="comment">//"-"为连接符，将数组中的元素连接成一个字符串。  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//访问最后一个元素  </span></span><br><span class="line"><span class="keyword">id</span> last = [array lastObject];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//在原数组后面添加一个对象，形成一个新的数组  </span></span><br><span class="line"><span class="built_in">NSArray</span> *array1 = [array arrayByAddingObject:<span class="string">@"Four"</span>];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//将一个字符串，通过特定的字符分割成数组  </span></span><br><span class="line"><span class="built_in">NSString</span> *str1 = <span class="string">@"This is separator"</span>;  </span><br><span class="line"><span class="built_in">NSArray</span> *array2 = [str1 componentsSeparatedByString:<span class="string">@" "</span>];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//使用NSRange截取数组  </span></span><br><span class="line"><span class="built_in">NSRange</span> range  = &#123;<span class="number">1</span>,<span class="number">2</span>&#125;;  </span><br><span class="line"><span class="built_in">NSArray</span> *array3 = [array subarrayWithRange:range];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/********NSMutableArray特有（NSArray没有的）*********/</span>  </span><br><span class="line"><span class="comment">//创建NSMutableArray  </span></span><br><span class="line"><span class="built_in">NSMutableArray</span> *mutablearray = [array mutableCopy];  </span><br><span class="line"><span class="comment">//忘NSMutableArray中添加元素  </span></span><br><span class="line">[mutablearray addObject:<span class="string">@"Five"</span>];  </span><br><span class="line"><span class="comment">//删除NSMutableArray中的元素  </span></span><br><span class="line">[mutablearray removeObject:<span class="string">@"One"</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="高级使用"><a href="#高级使用" class="headerlink" title="高级使用"></a>高级使用</h3><ul>
+<li>数组遍历方式</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:@<span class="number">1</span>,@<span class="number">7</span>,@<span class="number">3</span>,@<span class="number">5</span>, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"创建数组"</span>);  </span><br><span class="line"><span class="comment">//以下演示NSArray的遍历方式  </span></span><br><span class="line"><span class="comment">//第一种：for 普通遍历方式  </span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; array.count; i++)  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"array[%i] ＝ %@"</span>,i,array[i]);  </span><br><span class="line">      </span><br><span class="line">&#125;  </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"给数组排序"</span>);  </span><br><span class="line"><span class="comment">//NSArray常用排序方法（简单排序法）  </span></span><br><span class="line">array = [array sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)];  </span><br><span class="line"><span class="comment">//第二种：for..in 快速遍历方式  </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">id</span> obj <span class="keyword">in</span> array) &#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"array[%ld] ＝ %@"</span>,[array indexOfObject:obj],obj);  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"给数组添加一个元素"</span>);  </span><br><span class="line">array = [array arrayByAddingObject:@<span class="number">4</span>];  </span><br><span class="line"><span class="comment">//第三种：Block 枚举遍历方式  </span></span><br><span class="line">[array enumerateObjectsUsingBlock:^(<span class="keyword">id</span> obj, <span class="built_in">NSUInteger</span> idx, BOOLBOOL *stop) &#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"array[%ld] = %@"</span>,idx,obj);  </span><br><span class="line">&#125;];  </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"添加元素后排序"</span>);  </span><br><span class="line">array = [array sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)];  </span><br><span class="line"><span class="comment">//第四种：NSEnumerator 迭代器遍历方式  </span></span><br><span class="line"><span class="built_in">NSEnumerator</span> *enumerator = [array objectEnumerator];  </span><br><span class="line"><span class="keyword">id</span> obj = <span class="literal">nil</span>;  </span><br><span class="line"><span class="keyword">while</span> (obj = [enumerator nextObject]) &#123;  </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"array[%ld] ＝ %@"</span>,[array indexOfObject:obj],obj);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>四种排序方式</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种：简单排序（主要用于：NSString、NSNumber，这两个类中有compare方法）  </span></span><br><span class="line"><span class="built_in">NSArray</span> *array1 = [<span class="built_in">NSArray</span> arrayWithObjects:@<span class="number">1</span>,@<span class="number">7</span>,@<span class="number">3</span>,@<span class="number">5</span>, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line"><span class="built_in">NSArray</span> *sortArray1 = [array1 sortedArrayUsingSelector:<span class="keyword">@selector</span>(compare:)];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//第二种：指定方法进行排序(按学生姓名排序)  </span></span><br><span class="line"><span class="comment">//compareStudent为:Student中的一个对象方法，自己实现的。  </span></span><br><span class="line"><span class="built_in">NSArray</span> *studentArray2 = [<span class="built_in">NSArray</span> arrayWithObjects:s1,s2,s3,s4, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line"><span class="built_in">NSArray</span> *sortStudent2 =[studentArray2 sortedArrayUsingSelector:<span class="keyword">@selector</span>(compareStudent:)];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//第三种：利用Block进行排序(按学生学号排序)  </span></span><br><span class="line"><span class="built_in">NSArray</span> *studentArray3 =[<span class="built_in">NSArray</span> arrayWithObjects:s1,s2,s3,s4, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line"><span class="built_in">NSArray</span> *sortStudent3 = [studentArray3 sortedArrayUsingComparator:^<span class="built_in">NSComparisonResult</span>(Student *obj1, Student *obj2) &#123;  </span><br><span class="line">    <span class="comment">//调用字符串的compare方法  </span></span><br><span class="line">    <span class="keyword">return</span> [obj1.no compare:obj2.no];  </span><br><span class="line">      </span><br><span class="line">&#125;];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//第四种：利用NSSortDescriptor(描述器)进行排序( 姓名-》学号 :当姓名相同，学号小的在前面)  </span></span><br><span class="line"><span class="built_in">NSArray</span> *studentArray4 =[<span class="built_in">NSArray</span> arrayWithObjects:s1,s2,s3,s4, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/*****建立NSSortDescriptor进行排序**************/</span>  </span><br><span class="line"></span><br><span class="line"><span class="built_in">NSSortDescriptor</span> *studentdescriptor1 = [<span class="built_in">NSSortDescriptor</span> sortDescriptorWithKey:<span class="string">@"name"</span> ascending:<span class="literal">YES</span>];  </span><br><span class="line"><span class="built_in">NSSortDescriptor</span> *studentdescriptor2 = [<span class="built_in">NSSortDescriptor</span> sortDescriptorWithKey:<span class="string">@"no"</span> ascending:<span class="literal">YES</span>];  </span><br><span class="line"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSArray</span> arrayWithObjects:studentdescriptor1,studentdescriptor2, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line"><span class="built_in">NSArray</span> *sortStudent4 = [studentArray4 sortedArrayUsingDescriptors:array];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上文使用到了学生类，附加代码这里展示</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/实现便利构造器（创建学生使用到了本方法）  </span><br><span class="line">+ (Student *)studentWithNo:(<span class="built_in">NSString</span> *)no andName:(<span class="built_in">NSString</span> *)name  </span><br><span class="line">&#123;  </span><br><span class="line">    Student *stu = [[Student alloc]init];  </span><br><span class="line">    stu.no = no;  </span><br><span class="line">    stu.name = name;  </span><br><span class="line">    <span class="keyword">return</span> stu;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//实现排序方法（利用第二种排序使用到了本方法）  </span></span><br><span class="line">- (<span class="built_in">NSComparisonResult</span>)compareStudent:(Student *)student  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span>.name compare:student.name];  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数组与字符串相关的应用</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *array = @[<span class="string">@"1"</span>,<span class="string">@"2"</span>,<span class="string">@"3"</span>];<span class="comment">//NSArray *array = @[@1,@2,@3];  </span></span><br><span class="line"><span class="comment">//NSArray-&gt;NSString(NSArray中存放OC对象必须是NSString/NSNumber类型)  </span></span><br><span class="line"><span class="built_in">NSString</span> *string = [array componentsJoinedByString:<span class="string">@"-"</span>];  </span><br><span class="line"><span class="comment">//string = @"1-2-3"（利用“-“符号进行连接）  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//NSString-&gt;NSArray(字符串中，利用”-“符合对字符串进行拆分)  </span></span><br><span class="line"><span class="built_in">NSArray</span> *array1 = [string componentsSeparatedByString:<span class="string">@"-"</span>];  </span><br><span class="line"><span class="comment">//array1 = @[@"1",@"2",@"3"];</span></span><br></pre></td></tr></table></figure>
+<h3 id="实例应用"><a href="#实例应用" class="headerlink" title="实例应用"></a>实例应用</h3><ul>
+<li>简介</li>
+</ul>
+<p>　　利用NSArray进行排序：创建5个学生，学生属性有（学号、姓名、年龄、分数），现在将创建的5和学生进行排序（分数-&gt;年龄-&gt;学号），分数排降序，分数一样，按年龄排升序，年龄一样，按学号排降序。（因为学生年龄和分数不是NSString类型），所以不能用NSSortDescriptor进行排序。</p>
+<ul>
+<li>学生类Student</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Student.h文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">NSObject</span>  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *no;<span class="comment">//学号  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;<span class="comment">//姓名  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSNumber</span> *age;<span class="comment">//年龄  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSNumber</span> *score;<span class="comment">//分数  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//定义一个便利构造器  </span></span><br><span class="line">+ (Student *) studentWithNo:(<span class="built_in">NSString</span> *)no andName:(<span class="built_in">NSString</span> *)name  </span><br><span class="line">                     andAge:(<span class="built_in">NSNumber</span> *)age andScore:(<span class="built_in">NSNumber</span> *)score;  </span><br><span class="line"><span class="comment">//定义一个排序方法  </span></span><br><span class="line">- (<span class="built_in">NSComparisonResult</span>) compareStudent:(Student *)student;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Student.m文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Student.h"</span>  </span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//实现便利构造器（创建学生使用到了本方法）  </span></span><br><span class="line">+(Student *)studentWithNo:(<span class="built_in">NSString</span> *)no andName:(<span class="built_in">NSString</span> *)name andAge:(<span class="built_in">NSNumber</span> *)age andScore:(<span class="built_in">NSNumber</span> *)score  </span><br><span class="line">&#123;  </span><br><span class="line">    Student *stu = [[Student alloc]init];  </span><br><span class="line">    stu.no = no;  </span><br><span class="line">    stu.name = name;  </span><br><span class="line">    stu.age = age;  </span><br><span class="line">    stu.score = score;  </span><br><span class="line">    <span class="keyword">return</span> stu;  </span><br><span class="line">      </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//实现学生排序：分数降序，其他升序（分数-&gt;年龄-&gt;学号）  </span></span><br><span class="line">- (<span class="built_in">NSComparisonResult</span>)compareStudent:(Student *)student  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="comment">//比较两个学生的分数  </span></span><br><span class="line">    <span class="built_in">NSComparisonResult</span> result = [student.score compare:<span class="keyword">self</span>.score];  </span><br><span class="line">    <span class="comment">//分数一样，比较两个学生的年龄  </span></span><br><span class="line">    <span class="keyword">if</span> (result == <span class="built_in">NSOrderedSame</span>) &#123;  </span><br><span class="line">        result = [<span class="keyword">self</span>.age compare:student.age];  </span><br><span class="line">        <span class="comment">//学生年龄一样，比较学生学号  </span></span><br><span class="line">        <span class="keyword">if</span> (result == <span class="built_in">NSOrderedSame</span>) &#123;  </span><br><span class="line">            result = [<span class="keyword">self</span>.no compare:student.no];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//最后将比较结果返回  </span></span><br><span class="line">    <span class="keyword">return</span> result;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//重写description方法，利用NSLog答应输出时候调用  </span></span><br><span class="line">-(<span class="built_in">NSString</span> *)description  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"\n学号：%@\n姓名：%@\n年龄：%@\n分数：%@"</span>,_no,_name,_age,_score];  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>主函数</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">main.m文件</span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#import<span class="meta-string">"Student.h"</span>  </span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"***************NSArray欢迎您**************"</span>);  </span><br><span class="line">        Student *s1 = [Student studentWithNo:<span class="string">@"0001"</span> andName:<span class="string">@"Zhangsan"</span> andAge:@<span class="number">22</span> andScore:@<span class="number">89</span>];  </span><br><span class="line">        Student *s2 = [Student studentWithNo:<span class="string">@"0002"</span> andName:<span class="string">@"Rose"</span> andAge:@<span class="number">22</span> andScore:@<span class="number">89</span>];  </span><br><span class="line">        Student *s3 = [Student studentWithNo:<span class="string">@"0003"</span> andName:<span class="string">@"Lisi"</span> andAge:@<span class="number">24</span> andScore:@<span class="number">92</span>];  </span><br><span class="line">        Student *s4 = [Student studentWithNo:<span class="string">@"0004"</span> andName:<span class="string">@"Wangwu"</span> andAge:@<span class="number">26</span> andScore:@<span class="number">89</span>];  </span><br><span class="line">        Student *s5 = [Student studentWithNo:<span class="string">@"0005"</span> andName:<span class="string">@"Zhaoliu"</span> andAge:@<span class="number">22</span> andScore:@<span class="number">97</span>];  </span><br><span class="line">        <span class="built_in">NSArray</span> *students = [<span class="built_in">NSArray</span> arrayWithObjects:s1,s2,s3,s4,s5, <span class="literal">nil</span> <span class="literal">nil</span>];  </span><br><span class="line">        <span class="comment">//对这五个学生进行排序，分数按降序，其他按升序拍（分数-&gt;年龄-&gt;学号）  </span></span><br><span class="line">        <span class="built_in">NSArray</span> *sortStudents = [students sortedArrayUsingSelector:<span class="keyword">@selector</span>(compareStudent:)];  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">id</span> obj <span class="keyword">in</span> sortStudents) &#123;  </span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,obj);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出内容</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-21</span> <span class="number">00</span>:<span class="number">20</span>:<span class="number">33.772</span> <span class="number">09</span>-<span class="built_in">NSArray</span>等排序问题[<span class="number">2879</span>:<span class="number">177300</span>] ***************<span class="built_in">NSArray</span>欢迎您**************  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-21</span> <span class="number">00</span>:<span class="number">20</span>:<span class="number">33.773</span> <span class="number">09</span>-<span class="built_in">NSArray</span>等排序问题[<span class="number">2879</span>:<span class="number">177300</span>]   </span><br><span class="line">学号：<span class="number">0005</span>  </span><br><span class="line">姓名：Zhaoliu  </span><br><span class="line">年龄：<span class="number">22</span>  </span><br><span class="line">分数：<span class="number">97</span>  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-21</span> <span class="number">00</span>:<span class="number">20</span>:<span class="number">33.774</span> <span class="number">09</span>-<span class="built_in">NSArray</span>等排序问题[<span class="number">2879</span>:<span class="number">177300</span>]   </span><br><span class="line">学号：<span class="number">0003</span>  </span><br><span class="line">姓名：Lisi  </span><br><span class="line">年龄：<span class="number">24</span>  </span><br><span class="line">分数：<span class="number">92</span>  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-21</span> <span class="number">00</span>:<span class="number">20</span>:<span class="number">33.774</span> <span class="number">09</span>-<span class="built_in">NSArray</span>等排序问题[<span class="number">2879</span>:<span class="number">177300</span>]   </span><br><span class="line">学号：<span class="number">0001</span>  </span><br><span class="line">姓名：Zhangsan  </span><br><span class="line">年龄：<span class="number">22</span>  </span><br><span class="line">分数：<span class="number">89</span>  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-21</span> <span class="number">00</span>:<span class="number">20</span>:<span class="number">33.774</span> <span class="number">09</span>-<span class="built_in">NSArray</span>等排序问题[<span class="number">2879</span>:<span class="number">177300</span>]   </span><br><span class="line">学号：<span class="number">0002</span>  </span><br><span class="line">姓名：Rose  </span><br><span class="line">年龄：<span class="number">22</span>  </span><br><span class="line">分数：<span class="number">89</span>  </span><br><span class="line"><span class="number">2013</span><span class="number">-04</span><span class="number">-21</span> <span class="number">00</span>:<span class="number">20</span>:<span class="number">33.774</span> <span class="number">09</span>-<span class="built_in">NSArray</span>等排序问题[<span class="number">2879</span>:<span class="number">177300</span>]   </span><br><span class="line">学号：<span class="number">0004</span>  </span><br><span class="line">姓名：Wangwu  </span><br><span class="line">年龄：<span class="number">26</span>  </span><br><span class="line">分数：<span class="number">89</span></span><br></pre></td></tr></table></figure>
+<p><code>提醒1：</code>以上第3种排序采用比较函数的是NSString、NSNumber类型，非NSString、NSNumber类型的请自己写比较函数。（NSString、NSNumber内部都有compare：方法）<br><code>提醒2：</code>第4种排序采用的比较函数只有NSString类型，非NSString类型的不能用这种排序。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Hanson</a></p>
+        <p><span>发布时间:</span>2013-04-20, 23:59:46</p>
+        <p><span>最后更新:</span>2016-06-02, 16:02:50</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2013/04/20/Objective-C-Array/" title="Objective-C数组NSArray/NSMutableArray">http://hansoncoder.com/2013/04/20/Objective-C-Array/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.com/2013/04/20/Objective-C-Array/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2013/04/25/Objective-C-Number&NSDate/">
+                    Objective-C数字Number及日期Date
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2013/04/11/Objective-C-Five/">
+                    面向对象程序设计(一)
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建方式"><span class="toc-number">2.</span> <span class="toc-text">创建方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本使用"><span class="toc-number">3.</span> <span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级使用"><span class="toc-number">4.</span> <span class="toc-text">高级使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例应用"><span class="toc-number">5.</span> <span class="toc-text">实例应用</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Objective-C数组NSArray/NSMutableArray　| Hanson's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2013/04/20/Objective-C-Array/" data-title="Objective-C数组NSArray/NSMutableArray" data-url="http://hansoncoder.com/2013/04/20/Objective-C-Array/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hansoncoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://hansoncoder.com/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2013/04/25/Objective-C-Number&NSDate/" title="上一篇: Objective-C数字Number及日期Date">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2013/04/11/Objective-C-Five/" title="下一篇: 面向对象程序设计(一)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Hanson
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

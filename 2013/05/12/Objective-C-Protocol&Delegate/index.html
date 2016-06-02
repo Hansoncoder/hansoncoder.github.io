@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hanson" />
+
+
+
+<meta name="description" content="Objective-C中的Protocol称为协议（一个方法列表的集合），协议类似JAVA中的接口（interface），其应用场景是代理模式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="协议及其使用(Delegate)">
+<meta property="og:url" content="http://hansoncoder.com/2013/05/12/Objective-C-Protocol&Delegate/index.html">
+<meta property="og:site_name" content="Hanson's Blog">
+<meta property="og:description" content="Objective-C中的Protocol称为协议（一个方法列表的集合），协议类似JAVA中的接口（interface），其应用场景是代理模式。">
+<meta property="og:updated_time" content="2016-06-02T08:02:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="协议及其使用(Delegate)">
+<meta name="twitter:description" content="Objective-C中的Protocol称为协议（一个方法列表的集合），协议类似JAVA中的接口（interface），其应用场景是代理模式。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="Hanson&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>协议及其使用(Delegate) | Hanson&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/myAvatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hanson</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC-MRC/">ARC&MRC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hooks/">Hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metal入门/">Metal入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL库/">STL库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组/">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注移动开发，喜欢玩技术。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hanson</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/myAvatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hanson</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:hansoncoder@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/3090366734/profile" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Hansoncoder" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Objective-C-Protocol&amp;Delegate" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2013/05/12/Objective-C-Protocol&Delegate/" class="article-date">
+      <time datetime="2013-05-12T13:21:08.000Z" itemprop="datePublished">2013-05-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      协议及其使用(Delegate)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Objective-C基础/">Objective-C基础</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>　　Objective-C中的Protocol称为协议（一个方法列表的集合），协议类似JAVA中的接口（interface），其应用场景是代理模式。</p>
+<a id="more"></a>
+<h2 id="协议-Protocol"><a href="#协议-Protocol" class="headerlink" title="协议(Protocol)"></a>协议(Protocol)</h2><p>　　Protocol称为协议（一个方法列表的集合）。协议是多个类共享的一个方法列表,协议中列出的<code>方法列表</code>没有相应的实现，<code>方法列表</code>由遵守该协议的类来做出相应实现。其类似与JAVA中的接口interface 。</p>
+<h3 id="为什么要使用协议"><a href="#为什么要使用协议" class="headerlink" title="为什么要使用协议"></a>为什么要使用协议</h3><p>　　因为Object-C中不支持多继承（只支持单继承），所以很多时候都是用Protocol（协议）来解决类似于多继承的问题。</p>
+<ul>
+<li>协议的作用：</li>
+</ul>
+<blockquote>
+<ul>
+<li>用来声明一大堆方法（不能声明成员变量），但是不用实现这些方法。</li>
+<li>通知遵守该协议的类要做什么，但是怎么做由类自己去决定（由类去实现方法）。</li>
+<li>只要某个类遵守了这份协议，那么该类就拥有了协议中的方法的声明，实现即可</li>
+<li>只要父类遵守了某个协议，那么子类也相当于遵守了该协议。</li>
+</ul>
+</blockquote>
+<h3 id="如何使用协议"><a href="#如何使用协议" class="headerlink" title="如何使用协议"></a>如何使用协议</h3><ul>
+<li>协议声明格式</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span><br><span class="line"> *Object-C中的基协议为：NSObjct协议，其他协议基本都需要遵守基协议，协议的遵守用"&lt;&gt;" </span><br><span class="line"> *如：我们自己写的类，基本都要继承NSObjct基类，类的继承用":" </span><br><span class="line"> *协议定义格式： </span><br><span class="line"> * </span><br><span class="line"> *#import "其他协议文件名"//导入其他协议 </span><br><span class="line"> *@protocol  协议名 &lt;其他协议名&gt;//声明该协议遵守了另一个协议的写法 </span><br><span class="line"> * </span><br><span class="line"> * 方法声明列表 </span><br><span class="line"> * </span><br><span class="line"> *@end </span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>协议在类中使用格式</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设DrivingAgent是一个协议</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#include <span class="meta-string">"DrivingAgent.h"</span>  </span></span><br><span class="line"><span class="comment">/**************学员类************/</span>  </span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Person</span> : <span class="title">NSObject</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,retain) <span class="built_in">NSString</span> *name;<span class="comment">//学员姓名  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,retain) <span class="built_in">NSString</span> *drivingSchool;<span class="comment">//学车的驾校  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,retain) <span class="keyword">id</span>&lt;DrivingAgent&gt; delegate;<span class="comment">//遵守驾校报名协议的代理。  </span></span><br><span class="line"><span class="comment">//定义一个人的报名方法  </span></span><br><span class="line">- (<span class="keyword">void</span>) registration;  </span><br><span class="line"><span class="comment">//定义一个便利构造器  </span></span><br><span class="line">- (<span class="keyword">id</span>) initWithName:(<span class="built_in">NSString</span> *)name;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设DrivingAgent是一个协议</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"DrivingAgent.h"</span>  </span></span><br><span class="line"><span class="comment">/**************润德驾校代理类************/</span>  </span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">RunDeAgent</span> : <span class="title">NSObject</span> &lt;<span class="title">DrivingAgent</span>&gt;  </span></span><br><span class="line"><span class="comment">//驾校名字不生产set方法，采用readonly参数  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>,<span class="keyword">readonly</span>) <span class="built_in">NSString</span> *name;<span class="comment">//驾校名字  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSMutableArray</span> *studentsName;<span class="comment">//报名的学员姓名  </span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<h2 id="代理模式-Delegate"><a href="#代理模式-Delegate" class="headerlink" title="代理模式(Delegate)"></a>代理模式(Delegate)</h2><p>　　代理模式是23中常用面向对象的<code>软件设计模式</code>之一，为其他对象提供一种代理以控制对这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起到中介的作用。例如：生活中常见的“兼职中介“、”招生代理“、”驾校代理“。公司不方便直接招生，利用中介帮他们招生，现在的中介就变成了代理方。</p>
+<ul>
+<li>”驾校代理“举例：</li>
+</ul>
+<blockquote>
+<p>　　现在一个人A想报名考驾照，一个人B代理考驾照报名所有流程。如果A直接去驾校报名很麻烦，又没有时间，想找个代理人帮他报名。那么A可以找B代理他做这件事情。A找B代理做事情，这就叫代理模式。</p>
+</blockquote>
+<h3 id="创建代理模式"><a href="#创建代理模式" class="headerlink" title="创建代理模式"></a>创建代理模式</h3><p>　　上述A找B做代理，那么B必须要有<code>代理考驾照报名所有流程</code>这个功能。如果一个人C也有<code>代理考驾照报名所有流程</code>这个功能，那么A也可以找C代理他办这件事情。那么，我们可以把<code>代理考驾照报名所有流程</code>这个功能抽取为一个协议，如果谁遵守这个协议，那么谁可以做A的代理。</p>
+<ul>
+<li>代理考驾照报名所有流程的协议DrivingAgent</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DrivingAgent.h文件</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">DrivingAgent</span> &lt;<span class="title">NSObject</span>&gt;  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//代理考驾照报名所有流程方法  </span></span><br><span class="line"><span class="comment">//学员报名，将自己的名字报给代理,然后代理将《驾校名字》告诉学员（传入姓名，传出驾校名）  </span></span><br><span class="line">- (<span class="built_in">NSString</span> *)registration:(<span class="built_in">NSString</span> *)name;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>驾校RunDeAgent</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RunDeAgent.h文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"DrivingAgent.h"</span>  </span></span><br><span class="line"><span class="comment">/**************润德驾校代理类************/</span>  </span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">RunDeAgent</span> : <span class="title">NSObject</span> &lt;<span class="title">DrivingAgent</span>&gt;  </span></span><br><span class="line"><span class="comment">//驾校名字不生产set方法，采用readonly参数  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>,<span class="keyword">readonly</span>) <span class="built_in">NSString</span> *name;<span class="comment">//驾校名字  </span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>) <span class="built_in">NSMutableArray</span> *studentsName;<span class="comment">//报名的学员姓名  </span></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RunDeAgent.m文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"RunDeAgent.h"</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">RunDeAgent</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//重写初始化方法，给驾校定下名字  </span></span><br><span class="line">-(instancetype)init  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];  </span><br><span class="line">    _name =<span class="string">@"润德驾校"</span>;  </span><br><span class="line">    _studentsName = [[<span class="built_in">NSMutableArray</span> alloc]init];  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//实现协议里面的方法，让学员通过代理报名  </span></span><br><span class="line">-(<span class="built_in">NSString</span> *)registration:(<span class="built_in">NSString</span> *)name  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="comment">//学员报名时，查看学员是否已经报名过了  </span></span><br><span class="line">    <span class="keyword">if</span> (![_studentsName containsObject:name]) &#123;  </span><br><span class="line">        [_studentsName addObject:name];  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@报名%@成功。。。"</span>,name,_name);  </span><br><span class="line">        <span class="keyword">return</span> _name;  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@已经报名过了。。。"</span>,name);  </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>学员Person</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// Person.h文件</span><br><span class="line"></span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;  </span><br><span class="line">#include &quot;DrivingAgent.h&quot;  </span><br><span class="line">/**************学员类************/  </span><br><span class="line">@interface Person : NSObject  </span><br><span class="line">  </span><br><span class="line">@property (nonatomic,retain) NSString *name;//学员姓名  </span><br><span class="line">@property (nonatomic,retain) NSString *drivingSchool;//学车的驾校  </span><br><span class="line">@property (nonatomic,retain) id&lt;DrivingAgent&gt; delegate;//遵守驾校报名协议的代理。  </span><br><span class="line">//定义一个人的报名方法  </span><br><span class="line">- (void) registration;  </span><br><span class="line">//定义一个便利构造器  </span><br><span class="line">- (id) initWithName:(NSString *)name;  </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Person.m文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span>  </span></span><br><span class="line"><span class="comment">//实现便利构造器  </span></span><br><span class="line">-(<span class="keyword">id</span>)initWithName:(<span class="built_in">NSString</span> *)name  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];  </span><br><span class="line">    <span class="keyword">self</span>.name = name;  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//实现报名操作  </span></span><br><span class="line">-(<span class="keyword">void</span>)registration  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="comment">//通过代理报名  </span></span><br><span class="line">    <span class="built_in">NSString</span> *schoolName =[_delegate registration:_name];  </span><br><span class="line">    <span class="comment">//查看是否报名过了  </span></span><br><span class="line">    <span class="keyword">if</span> (schoolName) &#123;  </span><br><span class="line">        _drivingSchool =schoolName;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>主函数Main</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.m文件</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"Person.h"</span>  </span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"RunDeAgent.h"</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> charchar * argv[]) &#123;  </span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;  </span><br><span class="line">        <span class="comment">//创建两个润德驾校代理  </span></span><br><span class="line">        RunDeAgent *rDelegate = [[RunDeAgent alloc]init];  </span><br><span class="line">        RunDeAgent *r1delegate = [[RunDeAgent alloc]init];  </span><br><span class="line">        <span class="comment">//创建张三、李四  </span></span><br><span class="line">        Person *ZhangSan = [[Person alloc]initWithName:<span class="string">@"张三"</span>];  </span><br><span class="line">        Person *LiSi = [[Person alloc]initWithName:<span class="string">@"李四"</span>];  </span><br><span class="line">        <span class="comment">//给张三设置代理  </span></span><br><span class="line">        ZhangSan.delegate = rDelegate;  </span><br><span class="line">        <span class="comment">//张三第一次报名  </span></span><br><span class="line">        [ZhangSan registration];  </span><br><span class="line">        <span class="comment">//张三第二次报名  </span></span><br><span class="line">        [ZhangSan registration];  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@报了：%@"</span>,ZhangSan.name, ZhangSan.drivingSchool);  </span><br><span class="line">        <span class="comment">//给李四设置代理(李四不想和张三同一个代理)  </span></span><br><span class="line">        LiSi.delegate = r1delegate;  </span><br><span class="line">         <span class="comment">//李四报名  </span></span><br><span class="line">        [LiSi registration];  </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@报了：%@"</span>,LiSi.name, LiSi.drivingSchool);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结果输出</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2013</span><span class="number">-05</span><span class="number">-12</span> <span class="number">22</span>:<span class="number">03</span>:<span class="number">29.308</span> <span class="number">08</span>-Protocol协议[<span class="number">1461</span>:<span class="number">59733</span>] 张三报名润德驾校成功。。。  </span><br><span class="line"><span class="number">2013</span><span class="number">-05</span><span class="number">-12</span> <span class="number">22</span>:<span class="number">03</span>:<span class="number">29.309</span> <span class="number">08</span>-Protocol协议[<span class="number">1461</span>:<span class="number">59733</span>] 张三已经报名过了。。。  </span><br><span class="line"><span class="number">2013</span><span class="number">-05</span><span class="number">-12</span> <span class="number">22</span>:<span class="number">03</span>:<span class="number">29.309</span> <span class="number">08</span>-Protocol协议[<span class="number">1461</span>:<span class="number">59733</span>] 张三报了：润德驾校  </span><br><span class="line"><span class="number">2013</span><span class="number">-05</span><span class="number">-12</span> <span class="number">22</span>:<span class="number">03</span>:<span class="number">29.309</span> <span class="number">08</span>-Protocol协议[<span class="number">1461</span>:<span class="number">59733</span>] 李四报名润德驾校成功。。。  </span><br><span class="line"><span class="number">2013</span><span class="number">-05</span><span class="number">-12</span> <span class="number">22</span>:<span class="number">03</span>:<span class="number">29.309</span> <span class="number">08</span>-Protocol协议[<span class="number">1461</span>:<span class="number">59733</span>] 李四报了：润德驾校</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Hanson</a></p>
+        <p><span>发布时间:</span>2013-05-12, 21:21:08</p>
+        <p><span>最后更新:</span>2016-06-02, 16:02:50</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2013/05/12/Objective-C-Protocol&Delegate/" title="协议及其使用(Delegate)">http://hansoncoder.com/2013/05/12/Objective-C-Protocol&amp;Delegate/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.com/2013/05/12/Objective-C-Protocol&amp;Delegate/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/03/02/VPS-building-Hexo/">
+                    VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2013/05/10/Objective-C-Propertys/">
+                    属性@property参数列表详解
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#协议-Protocol"><span class="toc-number">1.</span> <span class="toc-text">协议(Protocol)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要使用协议"><span class="toc-number">1.1.</span> <span class="toc-text">为什么要使用协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何使用协议"><span class="toc-number">1.2.</span> <span class="toc-text">如何使用协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理模式-Delegate"><span class="toc-number">2.</span> <span class="toc-text">代理模式(Delegate)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建代理模式"><span class="toc-number">2.1.</span> <span class="toc-text">创建代理模式</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"协议及其使用(Delegate)　| Hanson's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2013/05/12/Objective-C-Protocol&amp;Delegate/" data-title="协议及其使用(Delegate)" data-url="http://hansoncoder.com/2013/05/12/Objective-C-Protocol&amp;Delegate/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hansoncoder"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://hansoncoder.com/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/03/02/VPS-building-Hexo/" title="上一篇: VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2013/05/10/Objective-C-Propertys/" title="下一篇: 属性@property参数列表详解">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Hanson
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
