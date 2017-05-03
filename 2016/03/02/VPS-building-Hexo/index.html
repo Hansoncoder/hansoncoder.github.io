@@ -16,6 +16,7 @@
 
 
 <meta name="description" content="本机使用Hexo生成静态文件，通过Git推送到VPS的Git仓库。VPS配置Git Hooks,将静态文件同步到站点目录，再配置Nginx静态环境解析站点目录文件，显示Blog页面。">
+<meta name="keywords" content="CentOS,VPS,Hexo,Hooks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）">
 <meta property="og:url" content="http://hansoncoder.com/2016/03/02/VPS-building-Hexo/index.html">
@@ -37,7 +38,7 @@
 <meta property="og:image" content="http://hansoncoder.com/resources/VPS-And-Hexo/17.png">
 <meta property="og:image" content="http://hansoncoder.com/resources/VPS-And-Hexo/18.png">
 <meta property="og:image" content="http://hansoncoder.com/resources/VPS-And-Hexo/19.png">
-<meta property="og:updated_time" content="2016-06-02T08:02:50.000Z">
+<meta property="og:updated_time" content="2017-05-03T07:45:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）">
 <meta name="twitter:description" content="本机使用Hexo生成静态文件，通过Git推送到VPS的Git仓库。VPS配置Git Hooks,将静态文件同步到站点目录，再配置Nginx静态环境解析站点目录文件，显示Blog页面。">
@@ -201,7 +202,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC-MRC/">ARC&MRC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hooks/">Hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metal入门/">Metal入门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL库/">STL库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组/">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ARC-MRC/">ARC&MRC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTPS/">HTTPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hooks/">Hooks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/STL库/">STL库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存管理/">内存管理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数组/">数组</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
                     </div>
                 </section>
                 
@@ -338,18 +339,18 @@
 <li>VPS上安装Git，建立Git仓库、配置Hooks来同步静态文件</li>
 <li>购买域名，在VPS上安装及配置Nginx环境，解析站点</li>
 </ol>
-<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h4 id="本机安装软件"><a href="#本机安装软件" class="headerlink" title="本机安装软件"></a>本机安装软件</h4><p>本机需要安装Node.js、Hexo、Git,还不会装软件的自行Google<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 本机安装hexo不加权限会报错，安装命令加上sudo</span><br><span class="line">sudo npm install -g hexo</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h4 id="本机安装软件"><a href="#本机安装软件" class="headerlink" title="本机安装软件"></a>本机安装软件</h4><p>本机需要安装Node.js、Hexo、Git,还不会装软件的自行Google<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 本机安装hexo不加权限会报错，安装命令加上sudo</div><div class="line">sudo npm install -g hexo</div></pre></td></tr></table></figure></p>
 <h4 id="本地配置Git"><a href="#本地配置Git" class="headerlink" title="本地配置Git"></a>本地配置Git</h4><blockquote>
 <p>本次演示配置信息如下，各自配置时替换即可<br>本地Git邮箱：hansoncoder@gmail.com<br>本地Git用户名：Hanson<br>VPS上网站配置文件:hexo.conf<br>VPS上站点目录：/var/www/hansoncoder.com/public<br>VPS上网站管理用户：Hanson<br>域名：hansoncoder.com</p>
 </blockquote>
 <p>1 设置本地Git邮箱及用户名</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MacdeiMac-2:~ Mac$ git config --global user.email &quot;hansoncoder@gmail.com&quot; #邮箱</span><br><span class="line">MacdeiMac-2:~ Mac$ git config --global user.name &quot;Hanson&quot; #用户名</span><br></pre></td></tr></table></figure>
-<p>查看配置是否正确<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MacdeiMac-2:~ Mac$ git config --list</span><br><span class="line">user.email=hansoncoder@gmail.com</span><br><span class="line">user.name=Hanson</span><br><span class="line">filter.lfs.clean=git-lfs clean %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge %f</span><br><span class="line">filter.lfs.required=true</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MacdeiMac-2:~ Mac$ git config --global user.email &quot;hansoncoder@gmail.com&quot; #邮箱</div><div class="line">MacdeiMac-2:~ Mac$ git config --global user.name &quot;Hanson&quot; #用户名</div></pre></td></tr></table></figure>
+<p>查看配置是否正确<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MacdeiMac-2:~ Mac$ git config --list</div><div class="line">user.email=hansoncoder@gmail.com</div><div class="line">user.name=Hanson</div><div class="line">filter.lfs.clean=git-lfs clean %f</div><div class="line">filter.lfs.smudge=git-lfs smudge %f</div><div class="line">filter.lfs.required=true</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p>2 生成sshkey</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MacdeiMac-2:~ Mac$ ssh-keygen -t rsa -C &quot;hansoncoder@gmail.com&quot; #一路回车</span><br><span class="line">MacdeiMac-2:~ Mac$ cat .ssh/id_rsa.pub #复制公钥内容，从AAA开始到结束</span><br><span class="line">ssh-rsa AAAA....hansoncoder@gmail.com #...代替秘钥中间内容</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">MacdeiMac-2:~ Mac$ ssh-keygen -t rsa -C &quot;hansoncoder@gmail.com&quot; #一路回车</div><div class="line">MacdeiMac-2:~ Mac$ cat .ssh/id_rsa.pub #复制公钥内容，从AAA开始到结束</div><div class="line">ssh-rsa AAAA....hansoncoder@gmail.com #...代替秘钥中间内容</div></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h4><p><img src="/resources/VPS-And-Hexo/4.png" alt="购买的域名"></p>
 <h4 id="VPS上安装Nginx"><a href="#VPS上安装Nginx" class="headerlink" title="VPS上安装Nginx"></a>VPS上安装Nginx</h4><p>补充命令知识：</p>
@@ -359,107 +360,107 @@
 <p>1 配置Nginx源文件</p>
 <blockquote>
 <p>在/etc/yum.repos.d目录下创建一个源配置文件nginx.repo,写入如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
-<p>执行命令: 以后写入文件默认用echo -e 指令，以后会忽略指令过程，在适当的地方需要反斜杠()作为转义字符，大家也可以用图形界面操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root /]# cd /etc/yum.repos.d</span><br><span class="line">[root yum.repos.d]# echo -e &quot;</span><br><span class="line">[nginx]\n</span><br><span class="line">name=nginx repo\n</span><br><span class="line">baseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/\n</span><br><span class="line">gpgcheck=0\n</span><br><span class="line">enabled=1\n</span><br><span class="line">&quot; &gt; nginx.repo</span><br></pre></td></tr></table></figure></p>
-<p>查看是否配置正确(使用cat 命令查看内容，以下配置文件大家自行使用查看命令验证配置信息)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root /]# cat /etc/yum.repos.d/nginx.repo</span><br><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[nginx]</div><div class="line">name=nginx repo</div><div class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</div><div class="line">gpgcheck=0</div><div class="line">enabled=1</div></pre></td></tr></table></figure>
+<p>执行命令: 以后写入文件默认用echo -e 指令，以后会忽略指令过程，在适当的地方需要反斜杠()作为转义字符，大家也可以用图形界面操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root /]# cd /etc/yum.repos.d</div><div class="line">[root yum.repos.d]# echo -e &quot;</div><div class="line">[nginx]\n</div><div class="line">name=nginx repo\n</div><div class="line">baseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/\n</div><div class="line">gpgcheck=0\n</div><div class="line">enabled=1\n</div><div class="line">&quot; &gt; nginx.repo</div></pre></td></tr></table></figure></p>
+<p>查看是否配置正确(使用cat 命令查看内容，以下配置文件大家自行使用查看命令验证配置信息)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root /]# cat /etc/yum.repos.d/nginx.repo</div><div class="line">[nginx]</div><div class="line">name=nginx repo</div><div class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</div><div class="line">gpgcheck=0</div><div class="line">enabled=1</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p>2 安装Nginx</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root /]# yum install nginx -y</span><br></pre></td></tr></table></figure>
-<p>查看Nginx版本号(安装完成验证)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root /]# nginx -v</span><br><span class="line">nginx version: nginx/1.8.1</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root /]# yum install nginx -y</div></pre></td></tr></table></figure>
+<p>查看Nginx版本号(安装完成验证)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root /]# nginx -v</div><div class="line">nginx version: nginx/1.8.1</div></pre></td></tr></table></figure></p>
 </blockquote>
 <h4 id="VPS上部署Nginx"><a href="#VPS上部署Nginx" class="headerlink" title="VPS上部署Nginx"></a>VPS上部署Nginx</h4><p>1 添加站点解析配置文件</p>
 <blockquote>
-<p>在/etc/nginx/sites-available目录下创建一个配置文件XXX.conf(这里以hexo.conf为例),并在文件中输入一下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  root /var/www/hansoncoder.com/public; #站点目录</span><br><span class="line">  index index.html index.htm; #主页，不用改</span><br><span class="line">  server_name www.hansoncoder.com hansoncoder.com *.hansoncoder.com; #4.03 申请的域名</span><br><span class="line">  location / &#123;</span><br><span class="line">    try_files $uri $uri/ /index.html;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>执行以下命令,然后通过图形化界面写入内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root /]# mkdir -p /etc/nginx/sites-available</span><br><span class="line">[root /]# touch /etc/nginx/sites-available/hexo.conf</span><br></pre></td></tr></table></figure></p>
+<p>在/etc/nginx/sites-available目录下创建一个配置文件XXX.conf(这里以hexo.conf为例),并在文件中输入一下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">  root /var/www/hansoncoder.com/public; #站点目录</div><div class="line">  index index.html index.htm; #主页，不用改</div><div class="line">  server_name www.hansoncoder.com hansoncoder.com *.hansoncoder.com; #4.03 申请的域名</div><div class="line">  location / &#123;</div><div class="line">    try_files $uri $uri/ /index.html;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>执行以下命令,然后通过图形化界面写入内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root /]# mkdir -p /etc/nginx/sites-available</div><div class="line">[root /]# touch /etc/nginx/sites-available/hexo.conf</div></pre></td></tr></table></figure></p>
 <p><img src="/resources/VPS-And-Hexo/5.png" alt="图形用户写入内容过程"><br>查看hexo.conf配置文件信息(配置验证)<br><img src="/resources/VPS-And-Hexo/6.png" alt="站点及域名(hexo.conf文件)配置信息"></p>
 </blockquote>
 <p>2 配置Nginx配置文件</p>
 <blockquote>
-<p>在/etc/nginx/nginx.conf文件中添加如下代码(添加包含<code>sites-available</code>目录及站点<code>/var/www</code>目录下的配置文件)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include /etc/nginx/sites-available/*.conf;</span><br><span class="line">include /var/www/*.conf;</span><br></pre></td></tr></table></figure></p>
+<p>在/etc/nginx/nginx.conf文件中添加如下代码(添加包含<code>sites-available</code>目录及站点<code>/var/www</code>目录下的配置文件)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">include /etc/nginx/sites-available/*.conf;</div><div class="line">include /var/www/*.conf;</div></pre></td></tr></table></figure></p>
 <p><img src="/resources/VPS-And-Hexo/9.png" alt="Nginx配置文件(nginx.conf)配置步骤"><br>检查配置是否成功<br><img src="/resources/VPS-And-Hexo/10.png" alt="Nginx配置文件(nginx.conf)配置内容"></p>
 </blockquote>
 <p>3 配置防火墙</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root /]# iptables -I INPUT -p tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<p>防火墙配置验证：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root /]# /etc/init.d/iptables status</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root /]# iptables -I INPUT -p tcp --dport 80 -j ACCEPT</div></pre></td></tr></table></figure>
+<p>防火墙配置验证：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root /]# /etc/init.d/iptables status</div></pre></td></tr></table></figure></p>
 <p>显示结果如果有：<code>1 ACCEPT tcp -- 0.0.0.0/0 0.0.0.0/0 tcp dpt:80\</code>，说明配置成功。</p>
 </blockquote>
 <p>4 启动Nginx服务</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root /]# service nginx reload</span><br><span class="line">[root /]# /etc/init.d/nginx start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root /]# service nginx reload</div><div class="line">[root /]# /etc/init.d/nginx start</div></pre></td></tr></table></figure>
 <p><img src="/resources/VPS-And-Hexo/11.png" alt="Nginx服务启动成功"></p>
 </blockquote>
 <h4 id="创建站点管理者"><a href="#创建站点管理者" class="headerlink" title="创建站点管理者"></a>创建站点管理者</h4><p>为了安全考虑，在VPS上创建一个普通用户(Hanson)专门来管理网站的,其用户组为sitesManagers。</p>
 <p>1 创建用户组及用户</p>
 <blockquote>
-<p>并创建其家目录与分配用户到sitesManagers组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root /]# groupadd sitesManagers #创建用户组</span><br><span class="line">[root /]# useradd Hanson -m -g sitesManagers #创建用户，</span><br></pre></td></tr></table></figure></p>
-<p>查看用户信息(验证创建用户是否成功)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root /]# finger Hanson</span><br><span class="line">Login: Hanson         			Name: </span><br><span class="line">Directory: /home/Hanson             	Shell: /bin/bash</span><br><span class="line">Last login Wed Mar  2 05:39 (EST) on pts/0 from 113.108.199.76</span><br><span class="line">No mail.</span><br><span class="line">No Plan.</span><br><span class="line">[root /]# groups Hanson</span><br><span class="line">Hanson : sitesManagers</span><br></pre></td></tr></table></figure></p>
+<p>并创建其家目录与分配用户到sitesManagers组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root /]# groupadd sitesManagers #创建用户组</div><div class="line">[root /]# useradd Hanson -m -g sitesManagers #创建用户，</div></pre></td></tr></table></figure></p>
+<p>查看用户信息(验证创建用户是否成功)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root /]# finger Hanson</div><div class="line">Login: Hanson         			Name: </div><div class="line">Directory: /home/Hanson             	Shell: /bin/bash</div><div class="line">Last login Wed Mar  2 05:39 (EST) on pts/0 from 113.108.199.76</div><div class="line">No mail.</div><div class="line">No Plan.</div><div class="line">[root /]# groups Hanson</div><div class="line">Hanson : sitesManagers</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p>2 设置用户密码</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd Hanson</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">passwd Hanson</div></pre></td></tr></table></figure>
 <p>设置密码成功如下<br><img src="/resources/VPS-And-Hexo/13.png" alt="Hanson密码设置成功"></p>
 </blockquote>
 <p>3 设置家目录权限</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 /home/Hanson</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 755 /home/Hanson</div></pre></td></tr></table></figure>
 </blockquote>
 <p>4 给Hanson用户添加sudo权限</p>
 <blockquote>
-<p>修改/etc/sudoers文件，找到如下指令添加一条<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## Allow root to run any commands anywhere</span><br><span class="line">root    ALL=(ALL)     ALL</span><br><span class="line">Hanson   ALL=(ALL)     ALL #新增这条指令</span><br></pre></td></tr></table></figure></p>
+<p>修改/etc/sudoers文件，找到如下指令添加一条<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## Allow root to run any commands anywhere</div><div class="line">root    ALL=(ALL)     ALL</div><div class="line">Hanson   ALL=(ALL)     ALL #新增这条指令</div></pre></td></tr></table></figure></p>
 <p><img src="/resources/VPS-And-Hexo/14.png" alt="用户权限设置信息"></p>
 </blockquote>
 <h4 id="建站测试"><a href="#建站测试" class="headerlink" title="建站测试"></a>建站测试</h4><p>1 创建测试页面</p>
 <blockquote>
-<p>进入<code>/var/www/hansoncoder.com/public</code>目录（目录由4.0.5的root值确定）,这里涉及的切换用户，应该使用”Root shell -interactive“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# cd /var</span><br><span class="line">[root@localhost var]# mkdir www</span><br><span class="line">[root@localhost var]# chmod 777 www</span><br><span class="line">[root@localhost var]# su Hanson </span><br><span class="line">[Hanson@localhost var]# mkdir -p /var/www/hansoncoder.com/public</span><br><span class="line">[Hanson@localhost var]# cd /var/www/hansoncoder.com/public</span><br><span class="line">[Hanson@localhost public]# echo “This is test HTML” &gt; index.html</span><br></pre></td></tr></table></figure></p>
+<p>进入<code>/var/www/hansoncoder.com/public</code>目录（目录由4.0.5的root值确定）,这里涉及的切换用户，应该使用”Root shell -interactive“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# cd /var</div><div class="line">[root@localhost var]# mkdir www</div><div class="line">[root@localhost var]# chmod 777 www</div><div class="line">[root@localhost var]# su Hanson </div><div class="line">[Hanson@localhost var]# mkdir -p /var/www/hansoncoder.com/public</div><div class="line">[Hanson@localhost var]# cd /var/www/hansoncoder.com/public</div><div class="line">[Hanson@localhost public]# echo “This is test HTML” &gt; index.html</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p>2 测试(打开浏览器，输入你的域名，看看能否看到：This is test HTML)<br>3 删除测试文件index.html</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Hanson@localhost public]# rm index.html</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[Hanson@localhost public]# rm index.html</div></pre></td></tr></table></figure>
 <p><img src="/resources/VPS-And-Hexo/15.png" alt="站点目录信息"></p>
 </blockquote>
 <h4 id="VPS上安装配置Git"><a href="#VPS上安装配置Git" class="headerlink" title="VPS上安装配置Git"></a>VPS上安装配置Git</h4><p>1 安装并验证Git</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# yum install</span><br><span class="line">[root@localhost /]# git --version</span><br><span class="line">git version 1.7.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# yum install</div><div class="line">[root@localhost /]# git --version</div><div class="line">git version 1.7.1</div></pre></td></tr></table></figure>
 </blockquote>
 <p>2 使用普通用户配置Git</p>
 <blockquote>
-<p>在网站管理者的家目录配置.ssh公钥，用于静态文件本地与VPS同步。复制本地公钥，粘贴到VPS的authorized_keys文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# su Hanson</span><br><span class="line">[Hanson@localhost /]# cd /Home/Hanson</span><br><span class="line">[Hanson@localhost ~]# mkdir .ssh</span><br><span class="line">[Hanson@localhost .ssh]# cd .ssh</span><br><span class="line">[Hanson@localhost .ssh]# echo &quot;本地的公钥(AAA开头)&quot; &gt; authorized_keys</span><br><span class="line">[Hanson@localhost .ssh]# cat authorized_keys #查看是否添加成功</span><br><span class="line">AAA....hansoncoder@gmail.com</span><br></pre></td></tr></table></figure></p>
+<p>在网站管理者的家目录配置.ssh公钥，用于静态文件本地与VPS同步。复制本地公钥，粘贴到VPS的authorized_keys文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# su Hanson</div><div class="line">[Hanson@localhost /]# cd /Home/Hanson</div><div class="line">[Hanson@localhost ~]# mkdir .ssh</div><div class="line">[Hanson@localhost .ssh]# cd .ssh</div><div class="line">[Hanson@localhost .ssh]# echo &quot;本地的公钥(AAA开头)&quot; &gt; authorized_keys</div><div class="line">[Hanson@localhost .ssh]# cat authorized_keys #查看是否添加成功</div><div class="line">AAA....hansoncoder@gmail.com</div></pre></td></tr></table></figure></p>
 <p>无法使用shell-basic切换用户的，通过如下操作<br><img src="/resources/VPS-And-Hexo/16.png" alt="Hanson创建authorized_keys文件"><br><img src="/resources/VPS-And-Hexo/17.png" alt="界面添加内容"></p>
 </blockquote>
 <p>3 设置VPS上ssh的端口号</p>
 <blockquote>
-<p>将/etc/ssh/sshd_config文件中的Port为22设置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Port 22</span><br></pre></td></tr></table></figure></p>
+<p>将/etc/ssh/sshd_config文件中的Port为22设置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Port 22</div></pre></td></tr></table></figure></p>
 </blockquote>
 <p>4 ssh远程登录验证</p>
 <blockquote>
-<p>在<code>本地</code>终端登录VPS的Hanson用户(ssh 用户名@域名),成功登录如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MacdeiMac-2: Mac$ ssh Hanson@hansoncoder.com</span><br><span class="line">git@hansoncoder.com&apos;s password: </span><br><span class="line">Last login: Tue Mar  1 02:21:36 2016 from 113.108.199.76</span><br><span class="line">[Hanson@localhost ][6]$</span><br></pre></td></tr></table></figure></p>
+<p>在<code>本地</code>终端登录VPS的Hanson用户(ssh 用户名@域名),成功登录如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MacdeiMac-2: Mac$ ssh Hanson@hansoncoder.com</div><div class="line">git@hansoncoder.com&apos;s password: </div><div class="line">Last login: Tue Mar  1 02:21:36 2016 from 113.108.199.76</div><div class="line">[Hanson@localhost ][6]$</div></pre></td></tr></table></figure></p>
 </blockquote>
 <h4 id="VPS上配置Git仓库"><a href="#VPS上配置Git仓库" class="headerlink" title="VPS上配置Git仓库"></a>VPS上配置Git仓库</h4><p>在VPS上初始化Git仓库，配置Hooks目录下的post-receive文件，实现本地静态文件发布时自动同步到站点目录</p>
 <p>1 初始化Git仓库</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# su Hanson</span><br><span class="line">[Hanson@localhost /]# cd /home/Hanson</span><br><span class="line">[Hanson@localhost ~]# mkdir HansonBlog.git</span><br><span class="line">[Hanson@localhost ~]# cd HansonBlog.git</span><br><span class="line">[Hanson@localhost HansonBlog.git]# git init —bare</span><br><span class="line">[Hanson@localhost HansonBlog.git]# ls -l</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost /]# su Hanson</div><div class="line">[Hanson@localhost /]# cd /home/Hanson</div><div class="line">[Hanson@localhost ~]# mkdir HansonBlog.git</div><div class="line">[Hanson@localhost ~]# cd HansonBlog.git</div><div class="line">[Hanson@localhost HansonBlog.git]# git init —bare</div><div class="line">[Hanson@localhost HansonBlog.git]# ls -l</div></pre></td></tr></table></figure>
 <p><img src="/resources/VPS-And-Hexo/18.png" alt="初始化成功信息"></p>
 </blockquote>
 <p>2 配置VPS上Git仓库的Hooks</p>
 <blockquote>
-<p>在/home/Hanson/HansonBlog.git/Hooks目录创建post-receive<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd Hooks</span><br><span class="line">touch post-receive</span><br><span class="line">chmod 755 post-receive</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在post-receive文件写入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash -l</span><br><span class="line">GIT_REPO=/home/Hanson/HansonBlog.git #Git仓库 10.1确定</span><br><span class="line">TMP_GIT_CLONE=/tmp/HansonBlog</span><br><span class="line">PUBLIC_WWW=/var/www/hansoncoder.com/public #站点目录 5.2步确定</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在/home/Hanson/HansonBlog.git/Hooks目录创建post-receive<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd Hooks</div><div class="line">touch post-receive</div><div class="line">chmod 755 post-receive</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>在post-receive文件写入以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash -l</div><div class="line">GIT_REPO=/home/Hanson/HansonBlog.git #Git仓库 10.1确定</div><div class="line">TMP_GIT_CLONE=/tmp/HansonBlog</div><div class="line">PUBLIC_WWW=/var/www/hansoncoder.com/public #站点目录 5.2步确定</div><div class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</div><div class="line">git clone $GIT_REPO $TMP_GIT_CLONE</div><div class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</div><div class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</div></pre></td></tr></table></figure></p>
 <p>查看 post-receive文件内容(验证Hooks配置信息)<br><img src="/resources/VPS-And-Hexo/19.png" alt="post-receive文件内容"></p>
 </blockquote>
 <h2 id="博客初始化与编译发布"><a href="#博客初始化与编译发布" class="headerlink" title="博客初始化与编译发布"></a>博客初始化与编译发布</h2><ol>
 <li><p>本地初始化Hexo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MacdeiMac-2: Mac$ cd /Users/Mac/Desktop</span><br><span class="line">MacdeiMac-2:Desktop Mac$ mkdir myBlog</span><br><span class="line">MacdeiMac-2:Desktop Mac$ cd myBlog</span><br><span class="line">MacdeiMac-2:myBlog Mac$ hexo init</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">MacdeiMac-2: Mac$ cd /Users/Mac/Desktop</div><div class="line">MacdeiMac-2:Desktop Mac$ mkdir myBlog</div><div class="line">MacdeiMac-2:Desktop Mac$ cd myBlog</div><div class="line">MacdeiMac-2:myBlog Mac$ hexo init</div></pre></td></tr></table></figure>
 </li>
 <li><p>Hexo编译生成静态文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MacdeiMac-2:myBlog Mac$ npm install</span><br><span class="line">MacdeiMac-2:myBlog Mac$ hexo g</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MacdeiMac-2:myBlog Mac$ npm install</div><div class="line">MacdeiMac-2:myBlog Mac$ hexo g</div></pre></td></tr></table></figure>
 </li>
 <li><p>修改配置文件_config.yml,在_config.yml文件末写入如下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">message: Hanson</span><br><span class="line">repo: Hanson@hansoncoder.com:HansonBlog.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">type: git</div><div class="line">message: Hanson</div><div class="line">repo: Hanson@hansoncoder.com:HansonBlog.git</div><div class="line">branch: master</div></pre></td></tr></table></figure>
 </li>
 <li><p>发布到VPS服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MacdeiMac-2:myBlog Mac$ npm install hexo-deployer-git --save</span><br><span class="line">MacdeiMac-2:myBlog Mac$ hexo d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MacdeiMac-2:myBlog Mac$ npm install hexo-deployer-git --save</div><div class="line">MacdeiMac-2:myBlog Mac$ hexo d</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="配置结束，发布文章"><a href="#配置结束，发布文章" class="headerlink" title="配置结束，发布文章"></a>配置结束，发布文章</h2><ul>
@@ -470,15 +471,15 @@
 <h2 id="问题与解决方案"><a href="#问题与解决方案" class="headerlink" title="问题与解决方案"></a>问题与解决方案</h2><ul>
 <li>用<code>yum install git</code>安装Git出现问题：/bin/bash: git: command not found</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解决（修改安装命令为）：yum install git git-svn git-email git-gui gitk -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">解决（修改安装命令为）：yum install git git-svn git-email git-gui gitk -y</div></pre></td></tr></table></figure>
 <ul>
 <li>ssh配置后，ssh连接验证：ssh: connect to host localhost port 22: Connection refused</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">错误原因：</span><br><span class="line">2.1. sshd 未安装：yum install openssh-server</span><br><span class="line">2.2. sshd 未启动：chkconfig sshd on</span><br><span class="line">2.3. 防火墙：chkconfig iptables off(永久性生效，重启后不会复原)</span><br><span class="line">2.4. 端口号没有设置为22(或者设置后没有重启：service sshd restart)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">错误原因：</div><div class="line">2.1. sshd 未安装：yum install openssh-server</div><div class="line">2.2. sshd 未启动：chkconfig sshd on</div><div class="line">2.3. 防火墙：chkconfig iptables off(永久性生效，重启后不会复原)</div><div class="line">2.4. 端口号没有设置为22(或者设置后没有重启：service sshd restart)</div></pre></td></tr></table></figure>
 <ul>
 <li>使用hero d报错：ERROR Deployer not found: git</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解决：npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">解决：npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
 <h2 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h2><ol>
 <li><strong><em>安装流程</em></strong> by <strong>叶雨梧桐BLOG</strong> on <code>2015/03/04</code>: <a href="http://blog.gt520.com/vps/239.html" target="_blank" rel="external">http://blog.gt520.com/vps/239.html</a></li>
 <li><strong><em>linux用户管理</em></strong> by <strong>海底苍鹰(tank)博客</strong> on <code>2010/11/26</code>: <a href="http://blog.51yip.com/linux/1137.html" target="_blank" rel="external">http://blog.51yip.com/linux/1137.html</a></li>
@@ -496,7 +497,7 @@
         <p><span>本文标题:</span><a href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Hanson</a></p>
         <p><span>发布时间:</span>2016-03-02, 22:28:00</p>
-        <p><span>最后更新:</span>2016-06-02, 16:02:50</p>
+        <p><span>最后更新:</span>2017-05-03, 15:45:39</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/03/02/VPS-building-Hexo/" title="VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）">http://hansoncoder.com/2016/03/02/VPS-building-Hexo/</a>
             <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.com/2016/03/02/VPS-building-Hexo/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -512,15 +513,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/03/22/new-configuration-to-deploy/">
-                    Blog本地目录丢失，重新配置部署
+                <a href="/2013/05/12/Objective-C-Protocol&Delegate/">
+                    协议及其使用(Delegate)
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2013/05/12/Objective-C-Protocol&Delegate/">
-                    协议及其使用(Delegate)
+                <a href="/2016/03/22/new-configuration-to-deploy/">
+                    Blog本地目录丢失，重新配置部署
                 </a>
             </div>
         
@@ -628,7 +629,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/22/new-configuration-to-deploy/" title="上一篇: Blog本地目录丢失，重新配置部署">
+            <a href="/2013/05/12/Objective-C-Protocol&Delegate/" title="上一篇: 协议及其使用(Delegate)">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -636,13 +637,13 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2013/05/12/Objective-C-Protocol&Delegate/" title="下一篇: 协议及其使用(Delegate)">
+            <a href="/2016/03/22/new-configuration-to-deploy/" title="下一篇: Blog本地目录丢失，重新配置部署">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/27/The-Nginx-HTTPS/">Nginx 搭建 HTTPS 实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/VPS-Safety/">VPS被爬当肉鸡，谈谈安全管理(CentOS7)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
 
 
 
@@ -656,7 +657,7 @@
         <div id="footer-info">
             <div class="footer-left">
                 <i class="fa fa-copyright"></i> 
-                2016 Hanson
+                2016-2017 Hanson
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
