@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hanson&#39;s Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://hansoncoder.cn/"/>
+  <updated>2019-12-11T10:28:36.722Z</updated>
+  <id>http://hansoncoder.cn/</id>
+  
+  <author>
+    <name>Hanson</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>逻辑英语公式</title>
+    <link href="http://hansoncoder.cn/2017/07/06/The-Nginx-HTTPS/"/>
+    <id>http://hansoncoder.cn/2017/07/06/The-Nginx-HTTPS/</id>
+    <published>2017-07-06T13:16:18.000Z</published>
+    <updated>2019-12-11T10:28:36.722Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　我居然找了个&lt;a href=&quot;http://weibo.com/u/6108040374&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;数学老师&lt;/a&gt;来教英语。我比较喜欢数学，为了提高我的英语水平，我决定跟着一个数学老师学习英语，感觉他讲通俗易懂，从而我开启了英语新的学习之路。本文是我第一次学习逻辑英语的笔记，有很多不足的地方，希望得到大家的指导和帮助。&lt;br&gt;　　&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="英语" scheme="http://hansoncoder.cn/categories/%E8%8B%B1%E8%AF%AD/"/>
+    
+    
+      <category term="逻辑英语" scheme="http://hansoncoder.cn/tags/%E9%80%BB%E8%BE%91%E8%8B%B1%E8%AF%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 编程规范</title>
+    <link href="http://hansoncoder.cn/2017/07/01/objective-c-style-guide/"/>
+    <id>http://hansoncoder.cn/2017/07/01/objective-c-style-guide/</id>
+    <published>2017-07-01T00:17:23.000Z</published>
+    <updated>2019-12-16T03:00:13.887Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　看了很多开发代码，经常都是很糟糕的格式，因为大家编码不一致（不是人与人之间的不一致，是同一个人编写每个页面格式都不一致）。参考 &lt;a href=&quot;https://github.com/raywenderlich/objective-c-style-guide&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;raywenderlich/objective-c-style-guide&lt;/a&gt; 编码规范方案，加入一些自己开发总结，编写本文的编码规范。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="学习计划" scheme="http://hansoncoder.cn/tags/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 技能树</title>
+    <link href="http://hansoncoder.cn/2017/06/28/iOS-Skills/"/>
+    <id>http://hansoncoder.cn/2017/06/28/iOS-Skills/</id>
+    <published>2017-06-28T08:20:26.000Z</published>
+    <updated>2019-12-11T10:37:25.337Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　参加完 2017@Swift 大会，发现自己和分享的大神们的差距。为了提升自己， 根据 &lt;code&gt;ios小菜&lt;/code&gt; 分享 &lt;a href=&quot;http://www.jianshu.com/p/672a14f0d8ef&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;iOS开发工程师技能树&lt;/a&gt;，结合我自身的编程习惯，修订了一份关于我自身iOS技能树，用于指导我的学习路线。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="学习计划" scheme="http://hansoncoder.cn/tags/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx 搭建 HTTPS 实战</title>
+    <link href="http://hansoncoder.cn/2017/04/28/The-Nginx-HTTPS/"/>
+    <id>http://hansoncoder.cn/2017/04/28/The-Nginx-HTTPS/</id>
+    <published>2017-04-28T08:27:26.000Z</published>
+    <updated>2019-12-16T03:00:13.888Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　从 2017 年 1 月 1 起，苹果公司将强制使用 HTTPS 协议传输(但延期执行了)； Chrome 浏览器将会把采用 HTTP 协议的网站标记为“不安全网站”；微信小程序也要求必须使用 HTTPS 请求；由此可见互联网安全越来越受到人们的重视。写此博客就是记录了一些我对 HTTPS 安全传输的学习与实践记录。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="环境搭建" scheme="http://hansoncoder.cn/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="CentOS" scheme="http://hansoncoder.cn/tags/CentOS/"/>
+    
+      <category term="HTTPS" scheme="http://hansoncoder.cn/tags/HTTPS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VPS被爬当肉鸡，谈谈安全管理(CentOS7)</title>
+    <link href="http://hansoncoder.cn/2017/04/01/VPS-Safety/"/>
+    <id>http://hansoncoder.cn/2017/04/01/VPS-Safety/</id>
+    <published>2017-04-01T04:27:26.000Z</published>
+    <updated>2019-12-11T10:38:17.886Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　用了一年多 VSP 进行 SS 科学上网，直到收到官网的发送&lt;code&gt;Service suspension notification&lt;/code&gt;邮件，才意识到我的 VPS 在安全方面基本处于裸奔状态。登录服务器页面看到一个黄色的警告页面，说我利用 VSP 做代理去做 DDOS 攻击别人，需要暂停我的服务器。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="环境搭建" scheme="http://hansoncoder.cn/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="CentOS" scheme="http://hansoncoder.cn/tags/CentOS/"/>
+    
+      <category term="VPS" scheme="http://hansoncoder.cn/tags/VPS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Metal入门一</title>
+    <link href="http://hansoncoder.cn/2016/06/02/The-first-article-Metal/"/>
+    <id>http://hansoncoder.cn/2016/06/02/The-first-article-Metal/</id>
+    <published>2016-06-01T20:20:30.000Z</published>
+    <updated>2019-12-11T10:28:36.721Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　Metal 框架支持 GPU 加速高、 3D 图像渲染以及数据并行计算工作。Metal 提供了先进合理的 API，它不仅为图形的组织、处理和呈现，也为计算命令以及为这些命令相关的数据和资源的管理，提供了细粒度和底层的控制。Metal 的主要目的是最小化 GPU 工作时 CPU 的消耗。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Metal" scheme="http://hansoncoder.cn/categories/Metal/"/>
+    
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="Metal入门" scheme="http://hansoncoder.cn/tags/Metal%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Blog本地目录丢失，重新配置部署</title>
+    <link href="http://hansoncoder.cn/2016/03/22/new-configuration-to-deploy/"/>
+    <id>http://hansoncoder.cn/2016/03/22/new-configuration-to-deploy/</id>
+    <published>2016-03-22T06:17:20.000Z</published>
+    <updated>2019-12-16T03:00:13.888Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　本机使用Hexo生成静态文件，通过Git推送到VPS的Git仓库。部署好后重装系统忘记备份，结果只能重新配置一遍。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="环境搭建" scheme="http://hansoncoder.cn/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="CentOS" scheme="http://hansoncoder.cn/tags/CentOS/"/>
+    
+      <category term="VPS" scheme="http://hansoncoder.cn/tags/VPS/"/>
+    
+      <category term="Hexo" scheme="http://hansoncoder.cn/tags/Hexo/"/>
+    
+      <category term="Hooks" scheme="http://hansoncoder.cn/tags/Hooks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</title>
+    <link href="http://hansoncoder.cn/2016/03/02/VPS-building-Hexo/"/>
+    <id>http://hansoncoder.cn/2016/03/02/VPS-building-Hexo/</id>
+    <published>2016-03-02T14:28:00.000Z</published>
+    <updated>2019-12-16T03:00:13.887Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　本机使用Hexo生成静态文件，通过Git推送到VPS的Git仓库。VPS配置Git Hooks,将静态文件同步到站点目录，再配置Nginx静态环境解析站点目录文件，显示Blog页面。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="环境搭建" scheme="http://hansoncoder.cn/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="CentOS" scheme="http://hansoncoder.cn/tags/CentOS/"/>
+    
+      <category term="VPS" scheme="http://hansoncoder.cn/tags/VPS/"/>
+    
+      <category term="Hexo" scheme="http://hansoncoder.cn/tags/Hexo/"/>
+    
+      <category term="Hooks" scheme="http://hansoncoder.cn/tags/Hooks/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>协议及其使用(Delegate)</title>
+    <link href="http://hansoncoder.cn/2013/05/12/Objective-C-Protocol&amp;Delegate/"/>
+    <id>http://hansoncoder.cn/2013/05/12/Objective-C-Protocol&amp;Delegate/</id>
+    <published>2013-05-12T13:21:08.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　Objective-C中的Protocol称为协议（一个方法列表的集合），协议类似JAVA中的接口（interface），其应用场景是代理模式。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="设计模式" scheme="http://hansoncoder.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>属性@property参数列表详解</title>
+    <link href="http://hansoncoder.cn/2013/05/10/Objective-C-Propertys/"/>
+    <id>http://hansoncoder.cn/2013/05/10/Objective-C-Propertys/</id>
+    <published>2013-05-10T15:41:28.000Z</published>
+    <updated>2019-12-11T10:38:04.293Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　Objective-C特有的一个关键字&lt;code&gt;Property&lt;/code&gt;，它属于编译器一个特性，编译器碰到&lt;code&gt;@property&lt;/code&gt;时，会自动展开为成员变量的set和get方法&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="ARC&amp;MRC" scheme="http://hansoncoder.cn/tags/ARC-MRC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C内存管理ARC&amp;MRC</title>
+    <link href="http://hansoncoder.cn/2013/05/06/Objective-C-ARC&amp;MRC/"/>
+    <id>http://hansoncoder.cn/2013/05/06/Objective-C-ARC&amp;MRC/</id>
+    <published>2013-05-06T03:28:15.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　内存管理是在开发中比较重视的一个问题，因为我们手机运行内存并不是很大，iPhone的内存就更小了，灵活运用Objective-C的内存管理机制可以给我带来很多方便。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="内存管理" scheme="http://hansoncoder.cn/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="ARC&amp;MRC" scheme="http://hansoncoder.cn/tags/ARC-MRC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C数字Number及日期Date</title>
+    <link href="http://hansoncoder.cn/2013/04/25/Objective-C-Number&amp;NSDate/"/>
+    <id>http://hansoncoder.cn/2013/04/25/Objective-C-Number&amp;NSDate/</id>
+    <published>2013-04-25T03:47:35.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　这两个放在一起，是因为有了前面几篇的基础，不需要写太多大家都知道的东西，所以本文就总结了Number/NSValue、NSDate。&lt;/p&gt;
+&lt;h2 id=&quot;Number-NSValue&quot;&gt;&lt;a href=&quot;#Number-NSValue&quot; class=&quot;headerlink&quot; title=&quot;Number/NSValue&quot;&gt;&lt;/a&gt;Number/NSValue&lt;/h2&gt;&lt;p&gt;  NSArray、NSSet、NSDictionary这些集合都只能存放Objective-C对象，不能存放基本数据类型（int、char、double。。。）。如果我们想将基本数据类型存到这些集合中，那么我们将基本数据类型包装成OC对象。NSNumber可以将基本数据类型包装为OC对象。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;NSValue：用来存储一个C或者OC的数据，可以包装基本数据类型（int、double..），也可以包装结构体（CGPoint、CGSize、CGRect）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;NSNumber：继承于NSValue，通常用来存储C语言中的基本数据类型（int、double..）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C字典NSDictionary/NSMutableDictionary</title>
+    <link href="http://hansoncoder.cn/2013/04/25/Objective-C-Dictionary/"/>
+    <id>http://hansoncoder.cn/2013/04/25/Objective-C-Dictionary/</id>
+    <published>2013-04-25T03:47:35.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　字典就是关键字及其定义（描述）的集合。Cocoa中的实现字典的集合NSDictionary在给定的关键字（通常是一个NSString）下存储一个数值（可以是任何类型的对象）。然后你就可以用这个关键字来查找相应的数值。不同于数组的是，字典（也被称为散列表或关联数组）使用的是键查询的优化存储方式。它可以立即找出要查询的数据，而不需要遍历整个数组进行查找。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C数组NSArray/NSMutableArray</title>
+    <link href="http://hansoncoder.cn/2013/04/20/Objective-C-Array/"/>
+    <id>http://hansoncoder.cn/2013/04/20/Objective-C-Array/</id>
+    <published>2013-04-20T15:59:46.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　Foundation框架中常用的一些类的有数组（NSArray/NSMutableArray）、集合（NSSet/NSMutableSet）、字典（NSDictionary/NSMutableDictionary）、数字（NSNumber/NSValue）、日期（NSDate）、数据（NSData/NSMutableData）。这些类只能存放OC对象，如果想保存一些基本的C数&lt;code&gt;（例如，int, float, double, BOOL等）&lt;/code&gt;，则需要将这些基本的C数据封装成NSNumber类型的对象，就可以被保存在这些类中。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="数组" scheme="http://hansoncoder.cn/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象程序设计(二)</title>
+    <link href="http://hansoncoder.cn/2013/04/11/Objective-C-Six/"/>
+    <id>http://hansoncoder.cn/2013/04/11/Objective-C-Six/</id>
+    <published>2013-04-11T06:21:08.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　面向对象程序设计的三大特性：封装、继承及多态，上一篇文章我们介绍了封装，本文就介绍剩下两个：继承与多态。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面向对象程序设计(一)</title>
+    <link href="http://hansoncoder.cn/2013/04/11/Objective-C-Five/"/>
+    <id>http://hansoncoder.cn/2013/04/11/Objective-C-Five/</id>
+    <published>2013-04-11T06:21:08.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　面向对象程序设计的三大特性：封装、继承及多态，本文主要总结了封装的特性以及Objective-C中的应用。并以实例分析、代码解答的方式来完成对封装的应用。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C字符串处理核心类</title>
+    <link href="http://hansoncoder.cn/2013/04/04/Objective-C-Four/"/>
+    <id>http://hansoncoder.cn/2013/04/04/Objective-C-Four/</id>
+    <published>2013-04-04T13:33:20.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　NSString/NSMutableString是Foundation框架中的类，是Objective-C中字符串处理的核心类。本文主要介绍这两个类的区别于常用地方。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Foundation框架中的结构体</title>
+    <link href="http://hansoncoder.cn/2013/03/27/Objective-C-Three/"/>
+    <id>http://hansoncoder.cn/2013/03/27/Objective-C-Three/</id>
+    <published>2013-03-27T12:59:46.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　本文主要介绍Foundation中常用的结构体，涉及内容有：NSRange、NSPoint\CGPoint、 NSSize\CGSize、NSRect\CGRect。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用C++的STL库解括号匹配</title>
+    <link href="http://hansoncoder.cn/2013/03/22/Data-StructuresA-One/"/>
+    <id>http://hansoncoder.cn/2013/03/22/Data-StructuresA-One/</id>
+    <published>2013-03-22T10:06:54.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　练习一下数据结构中栈(Stack)的应用，理解STL库中的栈的实现原理。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据结构与算法" scheme="http://hansoncoder.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="http://hansoncoder.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="C++" scheme="http://hansoncoder.cn/tags/C/"/>
+    
+      <category term="STL库" scheme="http://hansoncoder.cn/tags/STL%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C扩充数据类型</title>
+    <link href="http://hansoncoder.cn/2013/03/19/Objective-C-data-type-Two/"/>
+    <id>http://hansoncoder.cn/2013/03/19/Objective-C-data-type-Two/</id>
+    <published>2013-03-19T12:57:44.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　上一篇文章我们介绍了OC中基本数据类型，本文主要介绍Objective-C的扩充数据类型有：id、SEL、Block。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+</feed>

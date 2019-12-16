@@ -19,11 +19,11 @@
 <meta name="keywords" content="学习计划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 编程规范">
-<meta property="og:url" content="http://hansoncoder.com/2017/07/01/objective-c-style-guide/index.html">
+<meta property="og:url" content="http://hansoncoder.cn/2017/07/01/objective-c-style-guide/index.html">
 <meta property="og:site_name" content="Hanson&#39;s Blog">
 <meta property="og:description" content="看了很多开发代码，经常都是很糟糕的格式，因为大家编码不一致（不是人与人之间的不一致，是同一个人编写每个页面格式都不一致）。参考 raywenderlich/objective-c-style-guide 编码规范方案，加入一些自己开发总结，编写本文的编码规范。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-11T10:28:36.722Z">
+<meta property="og:updated_time" content="2019-12-16T03:00:13.887Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 编程规范">
 <meta name="twitter:description" content="看了很多开发代码，经常都是很糟糕的格式，因为大家编码不一致（不是人与人之间的不一致，是同一个人编写每个页面格式都不一致）。参考 raywenderlich/objective-c-style-guide 编码规范方案，加入一些自己开发总结，编写本文的编码规范。">
@@ -435,7 +435,7 @@
 </ul>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIView</span> *containerView;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) <span class="built_in">NSArray</span> *array;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *tutorialName;</span><br></pre></td></tr></table></figure>
 <p><code>NSString</code>应该使用 copy 而不是 strong 的属性特性。<br><code>NSMutable</code>开头的属性，需要使用 strong，不能使用 copy，否则会 Crash.</p>
-<p>　　为什么？<br>　　即使你声明一个 NSString 的属性，有人可能传入一个 NSMutableString 的实例，然后在你没有注意的情况下修改它。<br>　　详细请查看<a href="https://www.hansoncoder.com/2013/05/10/Objective-C-Propertys/" target="_blank" rel="noopener">属性@property参数列表详解</a></p>
+<p>　　为什么？<br>　　即使你声明一个 NSString 的属性，有人可能传入一个 NSMutableString 的实例，然后在你没有注意的情况下修改它。<br>　　详细请查看<a href="https://www.hansoncoder.cn/2013/05/10/Objective-C-Propertys/" target="_blank" rel="noopener">属性@property参数列表详解</a></p>
 <blockquote>
 <p>使用 copy 的 set 方法如下</p>
 </blockquote>
@@ -594,10 +594,10 @@
         <p><span>本文标题:</span><a href="/2017/07/01/objective-c-style-guide/">iOS 编程规范</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Hanson</a></p>
         <p><span>发布时间:</span>2017-07-01, 08:17:23</p>
-        <p><span>最后更新:</span>2019-12-11, 18:28:36</p>
+        <p><span>最后更新:</span>2019-12-16, 11:00:13</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/07/01/objective-c-style-guide/" title="iOS 编程规范">http://hansoncoder.com/2017/07/01/objective-c-style-guide/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.com/2017/07/01/objective-c-style-guide/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/07/01/objective-c-style-guide/" title="iOS 编程规范">http://hansoncoder.cn/2017/07/01/objective-c-style-guide/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://hansoncoder.cn/2017/07/01/objective-c-style-guide/　　作者: Hanson" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -702,7 +702,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2017/07/01/objective-c-style-guide/" data-title="iOS 编程规范" data-url="http://hansoncoder.com/2017/07/01/objective-c-style-guide/"></div>
+    <div class="ds-thread" data-thread-key="2017/07/01/objective-c-style-guide/" data-title="iOS 编程规范" data-url="http://hansoncoder.cn/2017/07/01/objective-c-style-guide/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -740,7 +740,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/06/The-Nginx-HTTPS/">逻辑英语公式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/objective-c-style-guide/">iOS 编程规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/28/iOS-Skills/">iOS 技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/The-Nginx-HTTPS/">Nginx 搭建 HTTPS 实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/VPS-Safety/">VPS被爬当肉鸡，谈谈安全管理(CentOS7)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/06/The-Nginx-HTTPS/">逻辑英语公式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/objective-c-style-guide/">iOS 编程规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/28/iOS-Skills/">iOS 技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/28/The-Nginx-HTTPS/">Nginx 搭建 HTTPS 实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/01/VPS-Safety/">VPS被爬当肉鸡，谈谈安全管理(CentOS7)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/02/The-first-article-Metal/">Metal入门一</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/22/new-configuration-to-deploy/">Blog本地目录丢失，重新配置部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/VPS-building-Hexo/">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/12/Objective-C-Protocol&Delegate/">协议及其使用(Delegate)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/10/Objective-C-Propertys/">属性@property参数列表详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/05/06/Objective-C-ARC&MRC/">Objective-C内存管理ARC&MRC</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Number&NSDate/">Objective-C数字Number及日期Date</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/25/Objective-C-Dictionary/">Objective-C字典NSDictionary/NSMutableDictionary</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/20/Objective-C-Array/">Objective-C数组NSArray/NSMutableArray</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Six/">面向对象程序设计(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/11/Objective-C-Five/">面向对象程序设计(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/04/04/Objective-C-Four/">Objective-C字符串处理核心类</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/27/Objective-C-Three/">Foundation框架中的结构体</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/22/Data-StructuresA-One/">使用C++的STL库解括号匹配</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/19/Objective-C-data-type-Two/">Objective-C扩充数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/14/Objective-C-data-type-One/">Objective-C基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2013/03/10/The-first-article-Objective-C/">Objective-C认识</a></li></ul>
 
 
 
