@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hansoncoder.cn/"/>
-  <updated>2019-12-26T06:32:42.771Z</updated>
+  <updated>2019-12-26T06:36:59.236Z</updated>
   <id>http://hansoncoder.cn/</id>
   
   <author>
@@ -21,11 +21,11 @@
     <link href="http://hansoncoder.cn/2019/12/26/The-Interview/"/>
     <id>http://hansoncoder.cn/2019/12/26/The-Interview/</id>
     <published>2019-12-26T02:16:18.000Z</published>
-    <updated>2019-12-26T06:32:42.771Z</updated>
+    <updated>2019-12-26T06:36:59.236Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;　　面试准备&lt;br&gt;　　&lt;br&gt;
+      &lt;p&gt;　　面试准备，由于面试紧张，表达能力有限，所以提交文章图片作为辅导。&lt;br&gt;　　&lt;br&gt;
     
     </summary>
     
@@ -271,32 +271,9 @@
     
       <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
     
-      <category term="内存管理" scheme="http://hansoncoder.cn/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
-    
       <category term="ARC&amp;MRC" scheme="http://hansoncoder.cn/tags/ARC-MRC/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Objective-C字典NSDictionary/NSMutableDictionary</title>
-    <link href="http://hansoncoder.cn/2013/04/25/Objective-C-Dictionary/"/>
-    <id>http://hansoncoder.cn/2013/04/25/Objective-C-Dictionary/</id>
-    <published>2013-04-25T03:47:35.000Z</published>
-    <updated>2016-06-02T08:02:50.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;　　字典就是关键字及其定义（描述）的集合。Cocoa中的实现字典的集合NSDictionary在给定的关键字（通常是一个NSString）下存储一个数值（可以是任何类型的对象）。然后你就可以用这个关键字来查找相应的数值。不同于数组的是，字典（也被称为散列表或关联数组）使用的是键查询的优化存储方式。它可以立即找出要查询的数据，而不需要遍历整个数组进行查找。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
-    
-      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+      <category term="内存管理" scheme="http://hansoncoder.cn/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
@@ -317,6 +294,29 @@
 &lt;li&gt;&lt;p&gt;NSNumber：继承于NSValue，通常用来存储C语言中的基本数据类型（int、double..）&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C基础" scheme="http://hansoncoder.cn/categories/Objective-C%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="Objective-C" scheme="http://hansoncoder.cn/tags/Objective-C/"/>
+    
+      <category term="基础" scheme="http://hansoncoder.cn/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C字典NSDictionary/NSMutableDictionary</title>
+    <link href="http://hansoncoder.cn/2013/04/25/Objective-C-Dictionary/"/>
+    <id>http://hansoncoder.cn/2013/04/25/Objective-C-Dictionary/</id>
+    <published>2013-04-25T03:47:35.000Z</published>
+    <updated>2016-06-02T08:02:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　字典就是关键字及其定义（描述）的集合。Cocoa中的实现字典的集合NSDictionary在给定的关键字（通常是一个NSString）下存储一个数值（可以是任何类型的对象）。然后你就可以用这个关键字来查找相应的数值。不同于数组的是，字典（也被称为散列表或关联数组）使用的是键查询的优化存储方式。它可以立即找出要查询的数据，而不需要遍历整个数组进行查找。&lt;/p&gt;
     
     </summary>
     
