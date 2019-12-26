@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://hansoncoder.cn/"/>
-  <updated>2019-12-11T10:28:36.722Z</updated>
+  <updated>2019-12-26T06:32:42.771Z</updated>
   <id>http://hansoncoder.cn/</id>
   
   <author>
@@ -17,23 +17,23 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>逻辑英语公式</title>
-    <link href="http://hansoncoder.cn/2017/07/06/The-Nginx-HTTPS/"/>
-    <id>http://hansoncoder.cn/2017/07/06/The-Nginx-HTTPS/</id>
-    <published>2017-07-06T13:16:18.000Z</published>
-    <updated>2019-12-11T10:28:36.722Z</updated>
+    <title>面试准备</title>
+    <link href="http://hansoncoder.cn/2019/12/26/The-Interview/"/>
+    <id>http://hansoncoder.cn/2019/12/26/The-Interview/</id>
+    <published>2019-12-26T02:16:18.000Z</published>
+    <updated>2019-12-26T06:32:42.771Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;　　我居然找了个&lt;a href=&quot;http://weibo.com/u/6108040374&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;数学老师&lt;/a&gt;来教英语。我比较喜欢数学，为了提高我的英语水平，我决定跟着一个数学老师学习英语，感觉他讲通俗易懂，从而我开启了英语新的学习之路。本文是我第一次学习逻辑英语的笔记，有很多不足的地方，希望得到大家的指导和帮助。&lt;br&gt;　　&lt;br&gt;
+      &lt;p&gt;　　面试准备&lt;br&gt;　　&lt;br&gt;
     
     </summary>
     
     
-      <category term="英语" scheme="http://hansoncoder.cn/categories/%E8%8B%B1%E8%AF%AD/"/>
+      <category term="面试" scheme="http://hansoncoder.cn/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="逻辑英语" scheme="http://hansoncoder.cn/tags/%E9%80%BB%E8%BE%91%E8%8B%B1%E8%AF%AD/"/>
+      <category term="面试" scheme="http://hansoncoder.cn/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
